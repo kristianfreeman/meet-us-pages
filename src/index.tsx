@@ -18,7 +18,7 @@ app.get('/', (c) => {
     <div class="container">
         <h2>In Person</h2>
         <ul class="links-list">
-            <li>We're at <a href="https://www.renderatl.com/">Render ATL</a>. Come see us at Booth #307</li>
+            <li>We're at <a href="https://www.renderatl.com/">Render ATL</a>. Come see us at booth #207</li>
             <li>Hang out with us at <a href="https://merge.berlin/">Merge Berlin</a></li>
         </ul>
         <h2>Online</h2>
