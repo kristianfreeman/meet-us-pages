@@ -39,7 +39,7 @@ app.get('/', (c) => {
 </main>
 <footer>
     <div class="container">
-        <p>Built with 🧡 on Cloudflare Pages</p>
+        <p>Built with 🧡 on Cloudflare <a href="https://pages.cloudflare.com">Pages</a> w/ <a href="honojs.dev">Hono</a> 🔥</p>
     </div>
 </footer>
 </>);
