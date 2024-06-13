@@ -5,15 +5,6 @@ const app = new Hono()
 
 app.use(renderer)
 
-/*
-<!-- Learn Cloudflare Workers: https://www.youtube.com/watch?v=H7Qe96fqg1M 
-Build and deploy AI applications on Cloudflare: https://ai.cloudflare.com/ 
-Cloudflare’s AI Playground: https://playground.ai.cloudflare.com/ 
-Cloudflare Docs: https://developers.cloudflare.com/ 
-Cloudflare Startup Program: https://www.cloudflare.com/forstartups/ -->
-
-
-*/
 
 app.get('/', (c) => {
   return c.render(
@@ -28,7 +19,7 @@ app.get('/', (c) => {
         <h2>In Person</h2>
         <ul class="links-list">
             <li>We're at <a href="https://www.renderatl.com/">Render ATL</a>. Come see us at Booth #307</li>
-            <li>Meet up at <a href="https://merge.berlin/">Merge Berlin</a></li>
+            <li>Hang out with us at <a href="https://merge.berlin/">Merge Berlin</a></li>
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
