@@ -28,6 +28,7 @@ app.get('/', (c) => {
         <h2>Online</h2>
         <ul class="links-list">
             <li>Check out our <a href="https://www.cloudflare.com/resource-hub/?resourcetype=Webinar ">upcoming webinars</a></li>
+            <li>Get hands on experience at our virtual <a href="https://gateway.on24.com/wcc/eh/2153307/lp/4639818/workersai-virtual-hack-camp">AI Hackcamp</a></li>
             <li>Join us on <a href="https://discord.cloudflare.com">Discord</a></li>
             <li>Follow us on <a href="https://x.com/cloudflaredev">X</a></li>
         </ul>
