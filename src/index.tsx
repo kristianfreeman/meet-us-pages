@@ -18,12 +18,8 @@ app.get('/', (c) => {
     <div class="container">
         <h2>In Person</h2>
         <ul class="links-list">
-            <li>We're hosting the <a href="https://summertime.pages.dev/z">Cloudflare Summer Developer Series | San Francisco | July 25, August 21 and September 26</a></li>
-            <li>We're at <a href="https://thatconference.com/wi/2024/">THAT Conference | Wisconsin Dells, WI | July 29 - August 1</a></li>
-            <li>Say hi at <a href="https://www.reactrally.com/">React Rally | Park City, UT | August 12-14</a></li>
             <li>We'd love to chat at <a href="https://itrevolution.com/product/enterprise-technology-leadership-summit-las-vegas-2024/?utm_medium=cpc&utm_source=google&utm_campaign=itrev2024&gad_source=1&gclid=CjwKCAjwm_SzBhAsEiwAXE2Cv56GG5J-ALHMYBOLmJKNy2V8IiYTXbESXyeWQd7jYY0flL1jmCxR5BoCzx8QAvD_BwE">Enterprise Technology Leadership Summit | Las Vegas, NV | August 20-22</a></li>
             <li>Swing by the <a href="https://aihwedgesummit.com/events/aihwedgesummit?gad_source=1&gclid=CjwKCAjwm_SzBhAsEiwAXE2Cv9lqbPs0CbV2ihYXB-zGaZ7XVbtnHa2NxISzBM2klcilzyyRmJ1O-RoC410QAvD_BwE">AI Hardware & Edge AI Summit | San Jose, CA | September 9-12</a></li>
-        
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
