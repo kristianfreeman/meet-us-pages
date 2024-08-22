@@ -26,7 +26,6 @@ app.get('/', (c) => {
         <h2>Online</h2>
         <ul class="links-list">
             <li>Check out our <a href="https://www.cloudflare.com/resource-hub/?resourcetype=Webinar ">upcoming webinars</a></li>
-            <li>Get hands on experience at our virtual <a href="https://gateway.on24.com/wcc/eh/2153307/lp/4639818/workersai-virtual-hack-camp">AI Hackcamp</a></li>
             <li>Join us on <a href="https://discord.cloudflare.com">Discord</a></li>
             <li>Follow us on <a href="https://x.com/cloudflaredev">X</a></li>
         </ul>
@@ -35,7 +34,8 @@ app.get('/', (c) => {
             <li>Get started with Cloudflare: <a href=" https://dash.cloudflare.com/sign-up/workers-and-pages
 ">Sign up</a></li>
             <li><a href="https://ai.cloudflare.com">Build and deploy AI applications on Cloudflare</a></li>
-            <li>Explore models on the <a href="https://playground.ai.cloudflare.com">AI Playground</a></li>
+            <li>Visually build with AI models on the <a href="https://multi-modal.ai.cloudflare.com/">Multi-modal AI Playground</a></li>
+            <li>Explore Text Generation models on the <a href="https://playground.ai.cloudflare.com">AI Playground</a></li>
             <li>Read the <a href="https://developers.cloudflare.com/ ">Docs</a></li>
         </ul>
     </div>
