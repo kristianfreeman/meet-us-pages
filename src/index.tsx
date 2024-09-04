@@ -28,8 +28,8 @@ app.get('/', (c) => {
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
+            <li>Tune into the <a href="https://gateway.on24.com/wcc/eh/2153307/lp/4698933/">AI Economics | Virtual event | September 19th</a></li>
             <li>Connect at <a href="https://cfe.dev/speakers/kody-jackson/">Code Word | Virtual event | September 26th</a></li>
-            <li>Tune into the <a href="https://gateway.on24.com/wcc/eh/2153307/lp/4698933/">AI Economic Forum | September 19th</a></li>
             <li>Check out our <a href="https://www.cloudflare.com/resource-hub/?resourcetype=Webinar ">upcoming webinars</a></li>
             <li>Join us on <a href="https://discord.cloudflare.com">Discord</a></li>
             <li>Follow us on <a href="https://x.com/cloudflaredev">X</a></li>
