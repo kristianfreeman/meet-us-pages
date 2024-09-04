@@ -23,8 +23,8 @@ app.get('/', (c) => {
             <li>Celebrate Cloudflare's Birthday Week with us at <a href="https://sanfranciscobirthdayweek.splashthat.com/">Builder Day | San Francisco | September 26th</a></li>
             <li>Hang out with us at <a href="">Web Unleashed | Toronto, Canada | October 10th-11th</a></li>
             <li>See you at <a href="https://reactsummit.us/?gad_source=1&gclid=Cj0KCQjwiuC2BhDSARIsALOVfBKGEE91GUq5L53ijdgiV2EWyoAATOFjtVdf7FbO7Cin8ud6v9VeAfkaAi3IEALw_wcB">React Summit</a> | New York | November 19th-22nd</li>
-            <li>Meet us at <a href="">AWS Re:invent | Las Vegas, NV | December 2nd-6th</a></li>
-            <li>We're atat <a href="">NeurIPS | Vancouver, Canada | December 9th-15th</a></li>
+            <li>Meet us at <a href="https://reinvent.awsevents.com/">AWS Re:invent | Las Vegas, NV | December 2nd-6th</a></li>
+            <li>We're atat <a href="https://neurips.cc/">NeurIPS | Vancouver, Canada | December 9th-15th</a></li>
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
