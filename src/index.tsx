@@ -16,20 +16,21 @@ app.get('/', (c) => {
   </header>
 <main>
     <div class="container">
+        <h2>Sweepstakes</h2>
+        <ul>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSe_Pb6K3LxRcn7ICiSY5KGi1L-Xsr7Dsa_dGENTK9dmuKlNcA/viewform">Enter for your chance to win</a> at the Cloudflare Booth</li>
+        </ul> 
         <h2>In Person</h2>
         <ul class="links-list">
-            <li>Swing by the <a href="https://aihwedgesummit.com/events/aihwedgesummit?gad_source=1&gclid=CjwKCAjwm_SzBhAsEiwAXE2Cv9lqbPs0CbV2ihYXB-zGaZ7XVbtnHa2NxISzBM2klcilzyyRmJ1O-RoC410QAvD_BwE">AI Hardware & Edge AI Summit | San Jose, CA | September 9-12</a></li>
-            <li>Come say hi at <a href="https://www.smalldatasf.com/">Small Data | San Francisco, CA | September 24th</a></li>
-            <li>Celebrate Cloudflare's Birthday Week with us at <a href="https://sanfranciscobirthdayweek.splashthat.com/">Builder Day | San Francisco | September 26th</a></li>
             <li>Hang out with us at <a href="">Web Unleashed | Toronto, Canada | October 10th-11th</a></li>
             <li>See you at <a href="https://reactsummit.us/?gad_source=1&gclid=Cj0KCQjwiuC2BhDSARIsALOVfBKGEE91GUq5L53ijdgiV2EWyoAATOFjtVdf7FbO7Cin8ud6v9VeAfkaAi3IEALw_wcB">React Summit</a> | New York | November 19th-22nd</li>
+            <li>Reúnete con nosotras en <a href="https://jsconf.cl/">JS Conf. Chile | Santiago, Chile | December 5th-7th</a></li>
             <li>Meet us at <a href="https://reinvent.awsevents.com/">AWS Re:invent | Las Vegas, NV | December 2nd-6th</a></li>
-            <li>We're atat <a href="https://neurips.cc/">NeurIPS | Vancouver, Canada | December 9th-15th</a></li>
+            <li>We're at <a href="https://neurips.cc/">NeurIPS | Vancouver, Canada | December 9th-15th</a></li>
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
-            <li>Tune into the <a href="https://gateway.on24.com/wcc/eh/2153307/lp/4698933/">AI Economics | Virtual event | September 19th</a></li>
-            <li>Connect at <a href="https://cfe.dev/speakers/kody-jackson/">Code Word | Virtual event | September 26th</a></li>
+            <li> Find us at a <a href="https://mlh.io/seasons/2025/events">Major League Hacking hackathon near you!</a></li>
             <li>Check out our <a href="https://www.cloudflare.com/resource-hub/?resourcetype=Webinar ">upcoming webinars</a></li>
             <li>Join us on <a href="https://discord.cloudflare.com">Discord</a></li>
             <li>Follow us on <a href="https://x.com/cloudflaredev">X</a></li>
