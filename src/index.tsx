@@ -16,13 +16,8 @@ app.get('/', (c) => {
   </header>
 <main>
     <div class="container">
-        <h2>Sweepstakes</h2>
-        <ul>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSe_Pb6K3LxRcn7ICiSY5KGi1L-Xsr7Dsa_dGENTK9dmuKlNcA/viewform">Enter for your chance to win</a> at the Cloudflare Booth</li>
-        </ul> 
         <h2>In Person</h2>
         <ul class="links-list">
-            <li>Hang out with us at <a href="">Web Unleashed | Toronto, Canada | October 10th-11th</a></li>
             <li>See you at <a href="https://reactsummit.us/?gad_source=1&gclid=Cj0KCQjwiuC2BhDSARIsALOVfBKGEE91GUq5L53ijdgiV2EWyoAATOFjtVdf7FbO7Cin8ud6v9VeAfkaAi3IEALw_wcB">React Summit</a> | New York | November 19th-22nd</li>
             <li>Reúnete con nosotras en <a href="https://jsconf.cl/">JS Conf. Chile | Santiago, Chile | December 5th-7th</a></li>
             <li>Meet us at <a href="https://reinvent.awsevents.com/">AWS Re:invent | Las Vegas, NV | December 2nd-6th</a></li>
