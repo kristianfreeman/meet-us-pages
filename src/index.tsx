@@ -16,10 +16,10 @@ app.get('/', (c) => {
   </header>
 <main>
     <div class="container">
+        <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdZY6jBE790LLbSQCXVtwSx5vVqUgrERBjMaouN-qNzDURcBA/viewform" target="_blank">Enter our Giveaway to win a Cloudflare Mini Game Console!</a></p>
+
         <h2>In Person</h2>
         <ul class="links-list">
-            <li><a href="https://jsworldconference.com/">JS World</a> | Amsterdam, Netherlands | March 12-14</li>
-            <li><a href="https://www.nvidia.com/gtc/">NVIDIA GTC</a> | San Jose, CA, USA | March 17-21</li>
             <li><a href="https://sigma.world/americas/">SiGMA Americas</a> | San Paulo, Brazil | April 7-10</li>
             <li><a href="https://www.zero-day.ch/">Zero Day</a> | Geneva, Switzerland | April 9-10</li>
             <li><a href="https://cloud.withgoogle.com/next/25">Google Next</a> | Las Vegas, NV, USA | April 9-11</li>
