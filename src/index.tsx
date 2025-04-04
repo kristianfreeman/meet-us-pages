@@ -16,7 +16,10 @@ app.get('/', (c) => {
   </header>
 <main>
     <div class="container">
-        <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdZY6jBE790LLbSQCXVtwSx5vVqUgrERBjMaouN-qNzDURcBA/viewform" target="_blank">Enter our Giveaway to win a Cloudflare Mini Game Console!</a></p>
+        <ul class="links-list">
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdZY6jBE790LLbSQCXVtwSx5vVqUgrERBjMaouN-qNzDURcBA/viewform" target="_blank">Enter our Giveaway to win a Cloudflare Mini Game Console!</a></li>
+
+        </ul>
 
         <h2>In Person</h2>
         <ul class="links-list">
