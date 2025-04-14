@@ -17,7 +17,7 @@ app.get('/', (c) => {
 <main>
     <div class="container">
         <ul class="links-list">
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd6Z-4QdA-8GGjZcaRuz7Nr5HrFpewKNdjOYpiKNbgCTdgYwg/viewform?usp=header" target="_blank">Enter our Giveaway to win a  Cotopaxi Allpa 35L Travel Pack!</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd6Z-4QdA-8GGjZcaRuz7Nr5HrFpewKNdjOYpiKNbgCTdgYwg/viewform?usp=header" target="_blank">Enter our Giveaway to win a Cotopaxi Allpa 35L Travel Pack!</a></li>
 
         </ul>
 
