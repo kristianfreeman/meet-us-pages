@@ -17,23 +17,25 @@ app.get('/', (c) => {
 <main>
     <div class="container">
         <ul class="links-list">
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd6Z-4QdA-8GGjZcaRuz7Nr5HrFpewKNdjOYpiKNbgCTdgYwg/viewform?usp=header" target="_blank">Enter our Giveaway to win a Cotopaxi Allpa 35L Travel Pack!</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSddglYe38x2rnOZHbDZdj7tWWdkhZ7r7F0UZEXYZUuhaCb7PA/viewform" target="_blank">Enter our Giveaway to win a mini game console!</a></li>
 
         </ul>
 
         <h2>In Person</h2>
         <ul class="links-list">
-            <li><a href="https://sigma.world/americas/">SiGMA Americas</a> | San Paulo, Brazil | April 7-10</li>
-            <li><a href="https://www.zero-day.ch/">Zero Day</a> | Geneva, Switzerland | April 9-10</li>
-            <li><a href="https://cloud.withgoogle.com/next/25">Google Next</a> | Las Vegas, NV, USA | April 9-11</li>
-            <li><a href="https://www.cloudflare.com/connect2025/london/">Cloudflare Connect</a> | London, England | April 10</li>
-            <li><a href="https://www.pytexas.org/2025/">PyTexas</a> | Austin, TX, USA | April 11-13</li>
-            <li><a href="https://aws.amazon.com/events/summits/amsterdam/">AWS Summit</a> | Amsterdam, Netherlands | April 16</li>
-            <li><a href="https://www.reactmiami.com/">React Miami</a> | Miami, FL, USA | April 17-18</li>
             <li><a href="https://www.rsaconference.com/usa">RSA</a> | San Francisco, CA, USA | April 28-May 1</li>
             <li><a href="https://www.startupgrind.tech/">Startup Grind</a> | Redwood City, CA, USA | April 29-30</li>
             <li><a href="https://aws.amazon.com/events/summits/london/">AWS Summit</a> | London, England | April 30</li>
-            <li><a href="https://aws.amazon.com/events/summits/poland/">AWS Summit</a> | Katowice, Poland | May 6</li>
+            <li><a href="https://aws.amazon.com/events/summits/poland/">AWS Summit</a> | Katowice, Poland | May 6</li>            
+            <li><a href="https://interrupt.langchain.com/">Interrupt: The AI Agent Conf.</a> | San Francisco, CA | May 14</li>
+            <li><a href="https://cfe.dev/events/moar-serverless-2025/">MOAR Serverless</a> | Virtual | May 22</li>
+            <li><a href="https://acd.awsugblr.in/">AWS Community Day</a> | Bangalore, India | May 23-24</li>
+            <li><a href="https://www.snowflake.com/en/summit/">Snowflake Summit</a> | San Francisco, CA | June 2-5</li>
+            <li><a href="https://aws.amazon.com/events/summits/stockholm/">AWS Summit</a> | Stockholm, Sweden | June 4</li>
+            <li><a href="https://aws.amazon.com/events/summits/washington-dc/">AWS Summit</a> | Washington, D.C. | June 10-11</li>
+            <li><a href="https://sbcevents.com/sbc-summit-malta/">Cabino Beats</a> | Malta | June 10-12</li>
+            <li><a href="https://aiconusa.techwell.com/?gad_source=1&gbraid=0AAAAAD1VndDMnd3tkxa7TvvwwcdL7GbMA&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGw9_OiMr19DLtvU5SVr2H310zYGbiIpP2g7zb8qd6Z1aai2DKBzWHQaAuIkEALw_wcB">AI Con USA</a> | Seattle, WA | June 11-12</li> 
+            <li><a href="https://leaddev.com/leaddev-london/"></a>Lead Dev London | London, England | June 16-17</li>
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
