@@ -35,7 +35,7 @@ app.get('/', (c) => {
             <li><a href="https://aws.amazon.com/events/summits/washington-dc/">AWS Summit</a> | Washington, D.C. | June 10-11</li>
             <li><a href="https://sbcevents.com/sbc-summit-malta/">Cabino Beats</a> | Malta | June 10-12</li>
             <li><a href="https://aiconusa.techwell.com/?gad_source=1&gbraid=0AAAAAD1VndDMnd3tkxa7TvvwwcdL7GbMA&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGw9_OiMr19DLtvU5SVr2H310zYGbiIpP2g7zb8qd6Z1aai2DKBzWHQaAuIkEALw_wcB">AI Con USA</a> | Seattle, WA | June 11-12</li> 
-            <li><a href="https://leaddev.com/leaddev-london/"></a>Lead Dev London | London, England | June 16-17</li>
+            <li><a href="https://leaddev.com/leaddev-london/">Lead Dev London</a> | London, England | June 16-17</li>
         </ul>
         <h2>Online</h2>
         <ul class="links-list">
