@@ -16,10 +16,6 @@ app.get('/', (c) => {
   </header>
 <main>
     <div class="container">
-        <ul class="links-list">
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSddglYe38x2rnOZHbDZdj7tWWdkhZ7r7F0UZEXYZUuhaCb7PA/viewform" target="_blank">Enter our Giveaway to win a mini game console!</a></li>
-
-        </ul>
 
         <h2>In Person</h2>
         <ul class="links-list">
