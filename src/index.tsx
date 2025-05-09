@@ -12,6 +12,7 @@ app.get('/', (c) => {
   <header>
     <div class="container">
         <h1>Meet the Cloudflare Team</h1>
+        <h2><a href="https://hack-the-safe.pages.dev/">🔐 Hack the Safe 🔐</a></h2>
     </div>
   </header>
 <main>
@@ -19,9 +20,7 @@ app.get('/', (c) => {
 
         <h2>In Person</h2>
         <ul class="links-list">
-            <li><a href="https://www.rsaconference.com/usa">RSA</a> | San Francisco, CA, USA | April 28-May 1</li>
-            <li><a href="https://www.startupgrind.tech/">Startup Grind</a> | Redwood City, CA, USA | April 29-30</li>
-            <li><a href="https://aws.amazon.com/events/summits/london/">AWS Summit</a> | London, England | April 30</li>
+            <li></li>
             <li><a href="https://aws.amazon.com/events/summits/poland/">AWS Summit</a> | Katowice, Poland | May 6</li>            
             <li><a href="https://interrupt.langchain.com/">Interrupt: The AI Agent Conf.</a> | San Francisco, CA | May 14</li>
             <li><a href="https://cfe.dev/events/moar-serverless-2025/">MOAR Serverless</a> | Virtual | May 22</li>
@@ -50,6 +49,7 @@ app.get('/', (c) => {
             <li>Visually build with AI models on the <a href="https://multi-modal.ai.cloudflare.com/">Multi-modal AI Playground</a></li>
             <li>Explore Text Generation models on the <a href="https://playground.ai.cloudflare.com">AI Playground</a></li>
             <li>Read the <a href="https://developers.cloudflare.com/ ">Docs</a></li>
+            <li>Use Cloudflare with <a href="https://github.com/cloudflare/langchain-cloudflare">Langchain and LangGraph</a></li>
         </ul>
     </div>
 </main>
