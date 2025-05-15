@@ -12,7 +12,7 @@ app.get('/', (c) => {
   <header>
     <div class="container">
         <h1>Meet the Cloudflare Team</h1>
-        <h2><a href="https://hack-the-safe.pages.dev/">🔐 Hack the Safe 🔐</a></h2>
+        <h2><a href="https://docs.google.com/forms/d/e/1FAIpQLSeSazEqPrZeOYaywn1_b32UYEGyHlxjhvF8oVMQc-cCmDsczw/viewform?usp=header">👾 Enter to for your chance to win a mini game console 👾</a></h2>
     </div>
   </header>
 <main>
