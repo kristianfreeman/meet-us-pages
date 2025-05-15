@@ -21,8 +21,6 @@ app.get('/', (c) => {
         <h2>In Person</h2>
         <ul class="links-list">
             <li></li>
-            <li><a href="https://aws.amazon.com/events/summits/poland/">AWS Summit</a> | Katowice, Poland | May 6</li>            
-            <li><a href="https://interrupt.langchain.com/">Interrupt: The AI Agent Conf.</a> | San Francisco, CA | May 14</li>
             <li><a href="https://cfe.dev/events/moar-serverless-2025/">MOAR Serverless</a> | Virtual | May 22</li>
             <li><a href="https://acd.awsugblr.in/">AWS Community Day</a> | Bangalore, India | May 23-24</li>
             <li><a href="https://www.snowflake.com/en/summit/">Snowflake Summit</a> | San Francisco, CA | June 2-5</li>
