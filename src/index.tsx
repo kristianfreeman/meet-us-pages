@@ -12,8 +12,8 @@ app.get("/", (c) => {
         <div class="container">
           <h1>Meet the Cloudflare Team</h1>
           <h2>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSazEqPrZeOYaywn1_b32UYEGyHlxjhvF8oVMQc-cCmDsczw/viewform?usp=header">
-              👾 Enter to for your chance to win a mini game console 👾
+            <a href="https://events.www.cloudflare.com/connect2025/home">
+              📅 Register for Cloudflare Connect: Oct. 13-16 in Las Vegas, NV
             </a>
           </h2>
         </div>
