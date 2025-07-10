@@ -16,6 +16,11 @@ app.get("/", (c) => {
               📅 Register for Cloudflare Connect: Oct. 13-16 in Las Vegas, NV
             </a>
           </h2>
+          <h3>
+            <a href="https://hack-the-safe.pages.dev">
+              🔐 Hack the Safe 🔐
+            </a>
+          </h3>
         </div>
       </header>
       <main>
