@@ -1,13 +1,14 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "wrangler dev",
     "build": "vite build",
     "preview": "wrangler pages dev dist",
     "deploy": "$npm_execpath run build && wrangler pages deploy dist"
   },
   "dependencies": {
-    "hono": "^4.1.0"
+    "hono": "^4.1.0",
+    "lucide-static": "^0.525.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
@@ -16,6 +17,6 @@
     "audit": "^0.0.6",
     "fix": "^0.0.3",
     "vite": "^5.0.12",
-    "wrangler": "^3.32.0"
+    "wrangler": "^4.25.0"
   }
 }

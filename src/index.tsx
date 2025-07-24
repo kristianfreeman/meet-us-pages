@@ -1,174 +1,119 @@
 import { Hono } from "hono";
-import { renderer } from "./renderer";
+import { Layout } from "./components/Layout";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
+import { FeaturedContent } from "./components/FeaturedContent";
+import { EventList } from "./components/EventList";
+import { ResourceList } from "./components/ResourceList";
+import { Footer } from "./components/Footer";
+import { eventService } from "./services/eventService";
+import eventsData from "./data/events.json";
 
 const app = new Hono();
 
-app.use(renderer);
-
 app.get("/", (c) => {
-  return c.render(
-    <>
-      <header>
-        <div class="container">
-          <h1>Meet the Cloudflare Team</h1>
-          <h2>
-            <a href="https://events.www.cloudflare.com/connect2025/home">
-              📅 Register for Cloudflare Connect: Oct. 13-16 in Las Vegas, NV
-            </a>
-          </h2>
-          <h3>
-            <a href="https://hack-the-safe.pages.dev">
-              🔐 Hack the Safe 🔐
-            </a>
-          </h3>
+  // Get data from our service
+  const featuredEvents = eventService.getFeaturedEvents();
+  const inPersonEvents = eventService.getInPersonEvents();
+  const resources = eventService.getResources();
+  
+  // Get featured content
+  const hackTheSafe = eventsData.featuredContent?.hackTheSafe;
+
+  return c.html(
+    <Layout>
+      <Header />
+      
+      {featuredEvents.length > 0 && <Hero featuredEvents={featuredEvents} />}
+      
+      {hackTheSafe && <FeaturedContent hackTheSafe={hackTheSafe} />}
+      
+      <main id="main-content" class="flex-grow">
+        <div class="events-filter-section">
+          <div class="container">
+            <div class="events-filter-header">
+              <h2 class="section-title">Events</h2>
+              <div class="events-filter-toggle" data-filter-toggle>
+                <button class="filter-button active" data-filter="all">All Events</button>
+                <button class="filter-button" data-filter="upcoming">Upcoming</button>
+                <button class="filter-button" data-filter="past">Past</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
-      <main>
-        <div class="container">
-          <h2>In Person</h2>
-          <ul class="links-list">
-            <li>
-              <a href="https://aws.amazon.com/events/summits/new-york/">
-                AWS Summit: New York, NY
-              </a>{" "}
-              | July 16th
-            </li>
-            <li>
-              <a href="https://laracon.us/">Laracon US</a>: Denver, CO | July
-              29-30
-            </li>
-            <li>
-              <a href="https://aws.amazon.com/es/events/summits/mexico-city/">
-                AWS Summit: Mexico City, Mexico
-              </a>{" "}
-              | August 6th
-            </li>
-            <li>
-              <a href="https://events.linuxfoundation.org/kubecon-cloudnativecon-india/">
-                KubeCon India
-              </a>
-              : Hyderabad, India | August 6-7
-            </li>
-            <li>
-              <a href="https://aws.amazon.com/pt/events/summits/sao-paulo/">
-                AWS Summit: Sao Paulo
-              </a>
-              : August 13th
-            </li>
-            <li>
-              <a href="https://aws.amazon.com/events/summits/toronto/">
-                AWS Summit: Toronto, Canada
-              </a>{" "}
-              | September 4th
-            </li>
-            <li>
-              <a href="https://aws.amazon.com/events/summits/zurich/">
-                AWS Summit: Zurich, Switzerland
-              </a>{" "}
-              | September 11th
-            </li>
-            <li>
-              <a href="https://aws.amazon.com/events/summits/los-angeles/">
-                AWS Summit: Los Angeles, CA
-              </a>{" "}
-              | September 17th
-            </li>
-            <li>
-              <a href="https://cascadiajs.com/">CascadiaJS</a>: Seattle, WA |
-              September 17-20
-            </li>
-            <li>
-              <a href="https://cfe.dev/events/codeword-conf-2025/">Code Word</a>
-              : Virtual | September 25th
-            </li>
-          </ul>
-          <h2>Online</h2>
-          <ul class="links-list">
-            <li>
-              Watch us at{" "}
-              <a href="https://youtube.com/@cloudflaredevelopers">
-                CloudflareDevelopers YoutTube
-              </a>
-            </li>
-            <li>
-              Find us at a{" "}
-              <a href="https://mlh.io/seasons/2025/events">
-                Major League Hacking hackathon near you!
-              </a>
-            </li>
-            <li>
-              Check out our{" "}
-              <a href="https://www.cloudflare.com/resource-hub/?resourcetype=Webinar ">
-                upcoming webinars
-              </a>
-            </li>
-            <li>
-              Join us on <a href="https://discord.cloudflare.com">Discord</a>
-            </li>
-            <li>
-              Follow us on <a href="https://x.com/cloudflaredev">X</a>
-            </li>
-            <li>
-              Nothing but{" "}
-              <a href="https://bsky.app/profile/cloudflare-dev.bsky.social">
-                BlueSky
-              </a>{" "}
-              from now on
-            </li>
-          </ul>
-          <h2>Resources</h2>
-          <ul class="links-list">
-            <li>
-              Get started with Cloudflare:{" "}
-              <a
-                href=" https://dash.cloudflare.com/sign-up/workers-and-pages
-"
-              >
-                Sign up
-              </a>
-            </li>
-            <li>
-              Explore building{" "}
-              <a href="https://developers.cloudflare.com/agents">AI Agents</a>{" "}
-              on Cloudflare
-            </li>
-            <li>
-              <a href="https://ai.cloudflare.com">
-                Build and deploy AI applications on Cloudflare
-              </a>
-            </li>
-            <li>
-              Visually build with AI models on the{" "}
-              <a href="https://multi-modal.ai.cloudflare.com/">
-                Multi-modal AI Playground
-              </a>
-            </li>
-            <li>
-              Explore Text Generation models on the{" "}
-              <a href="https://playground.ai.cloudflare.com">AI Playground</a>
-            </li>
-            <li>
-              Read the <a href="https://developers.cloudflare.com/ ">Docs</a>
-            </li>
-            <li>
-              Use Cloudflare with{" "}
-              <a href="https://github.com/cloudflare/langchain-cloudflare">
-                Langchain and LangGraph
-              </a>
-            </li>
-          </ul>
+        
+        <div data-events-container>
+          <EventList 
+            title="" 
+            events={inPersonEvents}
+          />
         </div>
+        
+        <script dangerouslySetInnerHTML={{ __html: `
+          document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('[data-filter]');
+            const eventsContainer = document.querySelector('[data-events-container]');
+            
+            filterButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter events
+                const eventCards = eventsContainer.querySelectorAll('.event-card');
+                eventCards.forEach(card => {
+                  if (filter === 'all') {
+                    card.style.display = '';
+                  } else if (filter === 'upcoming' && card.classList.contains('past')) {
+                    card.style.display = 'none';
+                  } else if (filter === 'past' && !card.classList.contains('past')) {
+                    card.style.display = 'none';
+                  } else {
+                    card.style.display = '';
+                  }
+                });
+                
+                // Hide empty month groups
+                const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
+                monthGroups.forEach(group => {
+                  const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
+                  group.style.display = visibleCards.length === 0 ? 'none' : '';
+                });
+              });
+            });
+          });
+        `}} />
+        
+        <section class="resources-section">
+          <div class="container">
+            <h2 class="section-title">Online</h2>
+            
+            <ResourceList
+              title="Community"
+              resources={resources.community}
+            />
+            
+            <h2 class="section-title mt-12">Resources</h2>
+            
+            <ResourceList
+              title="Getting Started"
+              resources={resources.gettingStarted}
+            />
+            
+            <ResourceList
+              title="Developer Tools"
+              resources={resources.developerTools}
+            />
+          </div>
+        </section>
       </main>
-      <footer>
-        <div class="container">
-          <p>
-            Built with 🧡 on Cloudflare{" "}
-            <a href="https://pages.cloudflare.com">Pages</a> w/{" "}
-            <a href="https://honojs.dev">Hono</a> 🔥
-          </p>
-        </div>
-      </footer>
-    </>
+      
+      <Footer />
+    </Layout>
   );
 });
+
 export default app;

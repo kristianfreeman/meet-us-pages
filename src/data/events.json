@@ -1,0 +1,244 @@
+{
+  "events": {
+    "featured": [
+      {
+        "id": "cloudflare-connect-2025",
+        "title": "Cloudflare Connect 2025",
+        "description": "Join us for the premier Cloudflare developer conference",
+        "date": "2025-10-13",
+        "endDate": "2025-10-16",
+        "location": "Las Vegas, NV",
+        "url": "https://events.www.cloudflare.com/connect2025/home",
+        "type": "conference",
+        "tags": ["flagship", "developer", "networking"],
+        "featured": true,
+        "virtual": false
+      }
+    ],
+    "inPerson": [
+      {
+        "id": "aws-summit-nyc-2025",
+        "title": "AWS Summit: New York",
+        "description": "Join Cloudflare at AWS Summit New York",
+        "date": "2025-07-16",
+        "location": "New York, NY",
+        "url": "https://aws.amazon.com/events/summits/new-york/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "enterprise"],
+        "virtual": false
+      },
+      {
+        "id": "laracon-us-2025",
+        "title": "Laracon US",
+        "description": "The official Laravel conference",
+        "date": "2025-07-29",
+        "endDate": "2025-07-30",
+        "location": "Denver, CO",
+        "url": "https://laracon.us/",
+        "type": "conference",
+        "tags": ["laravel", "php", "web"],
+        "virtual": false
+      },
+      {
+        "id": "aws-summit-mexico-2025",
+        "title": "AWS Summit: Mexico City",
+        "description": "AWS Summit in Mexico City",
+        "date": "2025-08-06",
+        "location": "Mexico City, Mexico",
+        "url": "https://aws.amazon.com/es/events/summits/mexico-city/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "latam"],
+        "virtual": false
+      },
+      {
+        "id": "kubecon-india-2025",
+        "title": "KubeCon India",
+        "description": "The Cloud Native Computing Foundation's flagship conference",
+        "date": "2025-08-06",
+        "endDate": "2025-08-07",
+        "location": "Hyderabad, India",
+        "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-india/",
+        "type": "conference",
+        "tags": ["kubernetes", "cloud-native", "containers"],
+        "virtual": false
+      },
+      {
+        "id": "aws-summit-sao-paulo-2025",
+        "title": "AWS Summit: São Paulo",
+        "description": "AWS Summit in São Paulo",
+        "date": "2025-08-13",
+        "location": "São Paulo, Brazil",
+        "url": "https://aws.amazon.com/pt/events/summits/sao-paulo/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "latam"],
+        "virtual": false
+      },
+      {
+        "id": "aws-summit-toronto-2025",
+        "title": "AWS Summit: Toronto",
+        "description": "AWS Summit in Toronto",
+        "date": "2025-09-04",
+        "location": "Toronto, Canada",
+        "url": "https://aws.amazon.com/events/summits/toronto/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "canada"],
+        "virtual": false
+      },
+      {
+        "id": "aws-summit-zurich-2025",
+        "title": "AWS Summit: Zurich",
+        "description": "AWS Summit in Zurich",
+        "date": "2025-09-11",
+        "location": "Zurich, Switzerland",
+        "url": "https://aws.amazon.com/events/summits/zurich/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "europe"],
+        "virtual": false
+      },
+      {
+        "id": "aws-summit-los-angeles-2025",
+        "title": "AWS Summit: Los Angeles",
+        "description": "AWS Summit in Los Angeles",
+        "date": "2025-09-17",
+        "location": "Los Angeles, CA",
+        "url": "https://aws.amazon.com/events/summits/los-angeles/",
+        "type": "summit",
+        "tags": ["aws", "cloud", "west-coast"],
+        "virtual": false
+      },
+      {
+        "id": "cascadiajs-2025",
+        "title": "CascadiaJS",
+        "description": "The Pacific Northwest JavaScript Conference",
+        "date": "2025-09-17",
+        "endDate": "2025-09-20",
+        "location": "Seattle, WA",
+        "url": "https://cascadiajs.com/",
+        "type": "conference",
+        "tags": ["javascript", "web", "frontend"],
+        "virtual": false
+      },
+      {
+        "id": "code-word-conf-2025",
+        "title": "Code Word",
+        "description": "Virtual developer conference",
+        "date": "2025-09-25",
+        "location": "Virtual",
+        "url": "https://cfe.dev/events/codeword-conf-2025/",
+        "type": "conference",
+        "tags": ["virtual", "developer", "web"],
+        "virtual": true
+      }
+    ],
+    "online": []
+  },
+  "resources": {
+    "gettingStarted": [
+      {
+        "id": "sign-up",
+        "title": "Get Started with Cloudflare",
+        "description": "Sign up for Workers and Pages",
+        "url": "https://dash.cloudflare.com/sign-up/workers-and-pages",
+        "category": "getting-started"
+      },
+      {
+        "id": "docs",
+        "title": "Documentation",
+        "description": "Read the comprehensive Cloudflare docs",
+        "url": "https://developers.cloudflare.com/",
+        "category": "getting-started"
+      }
+    ],
+    "developerTools": [
+      {
+        "id": "ai-agents",
+        "title": "AI Agents",
+        "description": "Explore building AI Agents on Cloudflare",
+        "url": "https://developers.cloudflare.com/agents",
+        "category": "developer-tools"
+      },
+      {
+        "id": "ai-platform",
+        "title": "AI Platform",
+        "description": "Build and deploy AI applications on Cloudflare",
+        "url": "https://ai.cloudflare.com",
+        "category": "developer-tools"
+      },
+      {
+        "id": "multi-modal-playground",
+        "title": "Multi-modal AI Playground",
+        "description": "Visually build with AI models",
+        "url": "https://multi-modal.ai.cloudflare.com/",
+        "category": "developer-tools"
+      },
+      {
+        "id": "ai-playground",
+        "title": "AI Playground",
+        "description": "Explore Text Generation models",
+        "url": "https://playground.ai.cloudflare.com",
+        "category": "developer-tools"
+      },
+      {
+        "id": "langchain-cloudflare",
+        "title": "Langchain & LangGraph",
+        "description": "Use Cloudflare with Langchain and LangGraph",
+        "url": "https://github.com/cloudflare/langchain-cloudflare",
+        "category": "developer-tools"
+      }
+    ],
+    "community": [
+      {
+        "id": "youtube",
+        "title": "CloudflareDevelopers YouTube",
+        "description": "Watch tutorials and talks",
+        "url": "https://youtube.com/@cloudflaredevelopers",
+        "category": "community"
+      },
+      {
+        "id": "mlh-hackathons",
+        "title": "Major League Hacking",
+        "description": "Find a hackathon near you",
+        "url": "https://mlh.io/seasons/2025/events",
+        "category": "community"
+      },
+      {
+        "id": "webinars",
+        "title": "Webinars",
+        "description": "Check out our upcoming webinars",
+        "url": "https://www.cloudflare.com/resource-hub/?resourcetype=Webinar",
+        "category": "community"
+      },
+      {
+        "id": "discord",
+        "title": "Discord",
+        "description": "Join our community on Discord",
+        "url": "https://discord.cloudflare.com",
+        "category": "community"
+      },
+      {
+        "id": "twitter",
+        "title": "X (Twitter)",
+        "description": "Follow us on X",
+        "url": "https://x.com/cloudflaredev",
+        "category": "community"
+      },
+      {
+        "id": "bluesky",
+        "title": "BlueSky",
+        "description": "Nothing but BlueSky from now on",
+        "url": "https://bsky.app/profile/cloudflare-dev.bsky.social",
+        "category": "community"
+      }
+    ]
+  },
+  "featuredContent": {
+    "hackTheSafe": {
+      "id": "hack-the-safe",
+      "title": "Hack the Safe",
+      "description": "Can you crack our security challenge? Test your skills and win prizes!",
+      "url": "https://hack-the-safe.pages.dev",
+      "icon": "lock",
+      "type": "challenge"
+    }
+  }
+}
