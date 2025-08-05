@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1754400973177,
+      "tag": "0000_dazzling_shard",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1754406395507,
+      "tag": "0001_nostalgic_the_spike",
+      "breakpoints": true
+    }
+  ]
+}

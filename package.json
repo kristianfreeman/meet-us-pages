@@ -1,21 +1,39 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "vite",
+    "dev:wrangler": "wrangler dev",
     "build": "vite build",
     "preview": "wrangler pages dev dist",
-    "deploy": "$npm_execpath run build && wrangler pages deploy dist"
+    "deploy": "$npm_execpath run build && wrangler pages deploy dist",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply meet-us-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply meet-us-db --remote",
+    "db:studio": "drizzle-kit studio",
+    "auth:generate": "npx better-auth generate --output src/lib/auth/schema.ts -y",
+    "db:seed": "wrangler d1 execute meet-us-db --local --file=./scripts/seed.sql",
+    "create-user": "node scripts/create-user.js",
+    "create-admin": "node scripts/create-admin-direct.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "better-auth": "^1.2.8",
+    "drizzle-orm": "^0.44.4",
     "hono": "^4.1.0",
-    "lucide-static": "^0.525.0"
+    "jose": "^6.0.12",
+    "lucide-static": "^0.525.0",
+    "nanoid": "^5.1.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
     "@hono/vite-cloudflare-pages": "^0.2.4",
     "@hono/vite-dev-server": "^0.9.0",
+    "@types/better-sqlite3": "^7.6.13",
     "audit": "^0.0.6",
+    "better-sqlite3": "^12.2.0",
+    "drizzle-kit": "^0.31.4",
     "fix": "^0.0.3",
+    "tsx": "^4.20.3",
     "vite": "^5.0.12",
     "wrangler": "^4.25.0"
   }
