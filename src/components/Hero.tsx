@@ -7,10 +7,13 @@ interface HeroProps {
 }
 
 export const Hero: FC<HeroProps> = ({ featuredEvents }) => {
-  if (featuredEvents.length === 0) return null;
+  // Ensure featuredEvents is an array
+  const safeEvents = Array.isArray(featuredEvents) ? featuredEvents : [];
+  
+  if (safeEvents.length === 0) return null;
 
   // Show only the first featured event in the hero
-  const mainEvent = featuredEvents[0];
+  const mainEvent = safeEvents[0];
 
   return (
     <div class="container">

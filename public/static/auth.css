@@ -1,88 +1,127 @@
 /* Auth Forms Styles */
-.login-container {
+.auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-4);
-  background-color: var(--color-bg-subtle);
+  padding: 20px;
 }
 
-.login-card {
-  background: var(--color-bg);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-8);
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 400px;
 }
 
-.login-title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-6);
+.auth-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 48px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+[data-theme="dark"] .auth-card {
+  background: var(--color-bg-secondary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.auth-header {
+  margin-bottom: 32px;
   text-align: center;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
   color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.auth-form {
+  margin-bottom: 24px;
 }
 
 .form-group {
-  margin-bottom: var(--space-4);
+  margin-bottom: 20px;
 }
 
 .form-label {
   display: block;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-2);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 8px;
 }
 
 .form-input {
   width: 100%;
-  padding: var(--space-3);
+  padding: 10px 14px;
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-size: var(--font-size-base);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.form-input:hover {
+  border-color: var(--color-text-muted);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--cf-orange);
   box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
 }
 
 .form-input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3) var(--space-4);
+  padding: 12px 24px;
   border: none;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
+.btn-block {
   width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--cf-orange);
+  color: white;
 }
 
 .btn-primary:hover {
   background-color: #ef4444;
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -95,20 +134,27 @@
   background-color: var(--color-bg-hover);
 }
 
-.login-footer {
-  margin-top: var(--space-6);
+.auth-footer {
   text-align: center;
-  font-size: var(--font-size-sm);
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.auth-footer-text {
+  margin: 0;
+  font-size: 14px;
   color: var(--color-text-muted);
 }
 
-.link {
-  color: var(--color-primary);
+.auth-link {
+  color: var(--cf-orange);
   text-decoration: none;
-  font-weight: var(--font-weight-medium);
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.link:hover {
+.auth-link:hover {
+  color: #ef4444;
   text-decoration: underline;
 }
 
