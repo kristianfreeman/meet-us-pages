@@ -5,11 +5,14 @@ main = "dist/_worker.js"
 
 assets = { directory = "./public" }
 
+[observability]
+enabled = true
+
 [vars]
-BETTER_AUTH_URL = "http://localhost:5173"
+BETTER_AUTH_URL = "https://meet-us.pages.dev"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "meet-us-db"
-database_id = "19eb4a88-f170-4f6c-bf7b-7e8ad925ded3"
+database_id = "6cc958c9-b355-475c-8500-ab7152699525"
 migrations_dir = "drizzle/migrations"

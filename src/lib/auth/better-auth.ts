@@ -27,12 +27,12 @@ export const auth = (env: AuthEnv) => {
       enabled: true,
       requireEmailVerification: false,
     },
-    trustedOrigins: [
-      env.BETTER_AUTH_URL || 'http://localhost:8787',
+    trustedOrigins: env.BETTER_AUTH_URL ? [
+      env.BETTER_AUTH_URL,
       'http://localhost:8787',
       'http://localhost:8788',
       'http://localhost:5173',
       'http://localhost:5174',
-    ],
+    ] : undefined,
   });
 };

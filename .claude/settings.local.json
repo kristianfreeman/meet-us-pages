@@ -11,7 +11,11 @@
       "Bash(rm:*)",
       "Bash(find:*)",
       "Bash(mv:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(npx wrangler d1 migrations apply:*)",
+      "Bash(npx wrangler d1 execute:*)",
+      "WebSearch",
+      "WebFetch(domain:www.better-auth.com)"
     ],
     "deny": []
   }

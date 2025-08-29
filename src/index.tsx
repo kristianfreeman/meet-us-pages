@@ -61,7 +61,7 @@ app.on(['GET', 'POST'], '/api/*', (c) => {
 // Authentication pages
 app.get("/login", (c) => {
   return c.html(
-    <Layout>
+    <Layout title="Admin Login - Meet the Cloudflare Team">
       <BetterLogin />
     </Layout>
   );
@@ -116,123 +116,143 @@ app.post("/api/admin/users", betterAuthMiddleware, createUserByAdmin);
 
 // Public routes
 app.get("/", async (c) => {
-  const db = createDb(c.env.DB);
-  
-  // Get events from database
-  const eventRows = await db.select().from(events).orderBy(desc(events.date)).all();
-  
-  // Get resources from database
-  const resourceRows = await db.select().from(resources).orderBy(resources.order, resources.title).all();
-  
-  // Filter featured and upcoming events
-  const featuredEvents = eventRows.filter(event => event.featured);
-  const today = new Date().toISOString().split('T')[0];
-  const inPersonEvents = eventRows.filter(event => !event.virtual);
-  
-  // Group resources by category
-  const resourcesByCategory = resourceRows.reduce((acc, resource) => {
-    if (!acc[resource.category]) acc[resource.category] = [];
-    acc[resource.category].push(resource);
-    return acc;
-  }, {} as Record<string, typeof resourceRows>);
-  
-  // Get featured content from JSON for now
-  const hackTheSafe = eventsData.featuredContent?.hackTheSafe;
+  try {
+    const db = createDb(c.env.DB);
+    
+    // Get events from database
+    const eventRows = await db.select().from(events).orderBy(desc(events.date)).all();
+    
+    // Get resources from database  
+    const resourceRows = await db.select().from(resources).orderBy(resources.order, resources.title).all();
+    
+    // Ensure we have arrays
+    const safeEventRows = Array.isArray(eventRows) ? eventRows : [];
+    const safeResourceRows = Array.isArray(resourceRows) ? resourceRows : [];
+    
+    // Filter featured and upcoming events
+    const featuredEvents = safeEventRows.filter(event => event.featured);
+    const today = new Date().toISOString().split('T')[0];
+    const inPersonEvents = safeEventRows.filter(event => !event.virtual);
+    
+    // Group resources by category
+    const resourcesByCategory = safeResourceRows.reduce((acc, resource) => {
+      if (!acc[resource.category]) acc[resource.category] = [];
+      acc[resource.category].push(resource);
+      return acc;
+    }, {} as Record<string, typeof safeResourceRows>);
+    
+    // Get featured content from JSON for now
+    const hackTheSafe = eventsData.featuredContent?.hackTheSafe;
 
-  return c.html(
-    <Layout>
-      <Header />
-      
-      {featuredEvents.length > 0 && <Hero featuredEvents={featuredEvents} />}
-      
-      {hackTheSafe && <FeaturedContent hackTheSafe={hackTheSafe} />}
-      
-      <main id="main-content" class="flex-grow">
-        <div class="events-filter-section">
-          <div class="container">
-            <div class="events-filter-header">
-              <h2 class="section-title">Events</h2>
-              <div class="events-filter-toggle" data-filter-toggle>
-                <button class="filter-button active" data-filter="all">All Events</button>
-                <button class="filter-button" data-filter="upcoming">Upcoming</button>
-                <button class="filter-button" data-filter="past">Past</button>
+    return c.html(
+      <Layout>
+        <Header />
+        
+        {featuredEvents.length > 0 && <Hero featuredEvents={featuredEvents} />}
+        
+        {hackTheSafe && <FeaturedContent hackTheSafe={hackTheSafe} />}
+        
+        <main id="main-content" class="flex-grow">
+          <div class="events-filter-section">
+            <div class="container">
+              <div class="events-filter-header">
+                <h2 class="section-title">Events</h2>
+                <div class="events-filter-toggle" data-filter-toggle>
+                  <button class="filter-button active" data-filter="all">All Events</button>
+                  <button class="filter-button" data-filter="upcoming">Upcoming</button>
+                  <button class="filter-button" data-filter="past">Past</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div data-events-container>
-          <EventList 
-            title="" 
-            events={inPersonEvents}
-          />
-        </div>
-        
-        <script dangerouslySetInnerHTML={{ __html: `
-          document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('[data-filter]');
-            const eventsContainer = document.querySelector('[data-events-container]');
-            
-            filterButtons.forEach(button => {
-              button.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                
-                // Update active state
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter events
-                const eventCards = eventsContainer.querySelectorAll('.event-card');
-                eventCards.forEach(card => {
-                  if (filter === 'all') {
-                    card.style.display = '';
-                  } else if (filter === 'upcoming' && card.classList.contains('past')) {
-                    card.style.display = 'none';
-                  } else if (filter === 'past' && !card.classList.contains('past')) {
-                    card.style.display = 'none';
-                  } else {
-                    card.style.display = '';
-                  }
-                });
-                
-                // Hide empty month groups
-                const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
-                monthGroups.forEach(group => {
-                  const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
-                  group.style.display = visibleCards.length === 0 ? 'none' : '';
+          
+          <div data-events-container>
+            <EventList 
+              title="" 
+              events={inPersonEvents}
+            />
+          </div>
+          
+          <script dangerouslySetInnerHTML={{ __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              const filterButtons = document.querySelectorAll('[data-filter]');
+              const eventsContainer = document.querySelector('[data-events-container]');
+              
+              filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                  const filter = this.getAttribute('data-filter');
+                  
+                  // Update active state
+                  filterButtons.forEach(btn => btn.classList.remove('active'));
+                  this.classList.add('active');
+                  
+                  // Filter events
+                  const eventCards = eventsContainer.querySelectorAll('.event-card');
+                  eventCards.forEach(card => {
+                    if (filter === 'all') {
+                      card.style.display = '';
+                    } else if (filter === 'upcoming' && card.classList.contains('past')) {
+                      card.style.display = 'none';
+                    } else if (filter === 'past' && !card.classList.contains('past')) {
+                      card.style.display = 'none';
+                    } else {
+                      card.style.display = '';
+                    }
+                  });
+                  
+                  // Hide empty month groups
+                  const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
+                  monthGroups.forEach(group => {
+                    const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
+                    group.style.display = visibleCards.length === 0 ? 'none' : '';
+                  });
                 });
               });
             });
-          });
-        `}} />
+          `}} />
+          
+          <section class="resources-section">
+            <div class="container">
+              <h2 class="section-title">Online</h2>
+              
+              <ResourceList
+                title="Community"
+                resources={resourcesByCategory.community || []}
+              />
+              
+              <h2 class="section-title mt-12">Resources</h2>
+              
+              <ResourceList
+                title="Getting Started"
+                resources={resourcesByCategory.gettingStarted || []}
+              />
+              
+              <ResourceList
+                title="Developer Tools"
+                resources={resourcesByCategory.developerTools || []}
+              />
+            </div>
+          </section>
+        </main>
         
-        <section class="resources-section">
+        <Footer />
+      </Layout>
+    );
+  } catch (e) {
+    console.error(e);
+    return c.html(
+      <Layout>
+        <Header />
+        <main id="main-content" class="flex-grow">
           <div class="container">
-            <h2 class="section-title">Online</h2>
-            
-            <ResourceList
-              title="Community"
-              resources={resourcesByCategory.community || []}
-            />
-            
-            <h2 class="section-title mt-12">Resources</h2>
-            
-            <ResourceList
-              title="Getting Started"
-              resources={resourcesByCategory.gettingStarted || []}
-            />
-            
-            <ResourceList
-              title="Developer Tools"
-              resources={resourcesByCategory.developerTools || []}
-            />
+            <h1 class="text-center">Something went wrong.</h1>
+            <p class="text-center">Please try again later.</p>
           </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </Layout>
-  );
+        </main>
+        <Footer />
+      </Layout>
+    );
+  }
 });
 
 export default app;
