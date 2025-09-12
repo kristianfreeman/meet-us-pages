@@ -8,6 +8,10 @@ export const betterAuthMiddleware = async (c: Context<{ Bindings: AuthEnv }>, ne
     const session = await authInstance.api.getSession({ headers: c.req.raw.headers });
     
     if (!session) {
+      // For API routes, return 401 instead of redirecting
+      if (c.req.path.startsWith('/api/')) {
+        return c.json({ error: 'Unauthorized' }, 401);
+      }
       return c.redirect('/login');
     }
     
@@ -18,6 +22,10 @@ export const betterAuthMiddleware = async (c: Context<{ Bindings: AuthEnv }>, ne
     await next();
   } catch (error) {
     console.error('Auth middleware error:', error);
+    // For API routes, return 401 instead of redirecting
+    if (c.req.path.startsWith('/api/')) {
+      return c.json({ error: 'Authentication failed' }, 401);
+    }
     return c.redirect('/login');
   }
 };

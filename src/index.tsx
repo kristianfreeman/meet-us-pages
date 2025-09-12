@@ -49,12 +49,22 @@ const app = new Hono<{
   };
 }>();
 
-// Authentication API routes
+// Authentication API routes (be specific to avoid catching other /api routes)
 app.on(['GET', 'POST'], '/api/sign-up/*', (c) => {
   return c.json({ error: 'Public signup is disabled. Users must be created by administrators.' }, 403);
 });
 
-app.on(['GET', 'POST'], '/api/*', (c) => {
+// Only handle specific auth routes
+app.on(['GET', 'POST'], '/api/auth/*', (c) => {
+  return auth(c.env).handler(c.req.raw);
+});
+app.post('/api/sign-in', (c) => {
+  return auth(c.env).handler(c.req.raw);
+});
+app.post('/api/sign-out', (c) => {
+  return auth(c.env).handler(c.req.raw);
+});
+app.get('/api/session', (c) => {
   return auth(c.env).handler(c.req.raw);
 });
 
@@ -158,8 +168,8 @@ app.get("/", async (c) => {
               <div class="events-filter-header">
                 <h2 class="section-title">Events</h2>
                 <div class="events-filter-toggle" data-filter-toggle>
-                  <button class="filter-button active" data-filter="all">All Events</button>
-                  <button class="filter-button" data-filter="upcoming">Upcoming</button>
+                  <button class="filter-button" data-filter="all">All Events</button>
+                  <button class="filter-button active" data-filter="upcoming">Upcoming</button>
                   <button class="filter-button" data-filter="past">Past</button>
                 </div>
               </div>
@@ -178,6 +188,33 @@ app.get("/", async (c) => {
               const filterButtons = document.querySelectorAll('[data-filter]');
               const eventsContainer = document.querySelector('[data-events-container]');
               
+              // Function to apply filter
+              function applyFilter(filter) {
+                const eventCards = eventsContainer.querySelectorAll('.event-card');
+                eventCards.forEach(card => {
+                  if (filter === 'all') {
+                    card.style.display = '';
+                  } else if (filter === 'upcoming' && card.classList.contains('past')) {
+                    card.style.display = 'none';
+                  } else if (filter === 'past' && !card.classList.contains('past')) {
+                    card.style.display = 'none';
+                  } else {
+                    card.style.display = '';
+                  }
+                });
+                
+                // Hide empty month groups
+                const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
+                monthGroups.forEach(group => {
+                  const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
+                  group.style.display = visibleCards.length === 0 ? 'none' : '';
+                });
+              }
+              
+              // Apply default filter (upcoming) on page load
+              applyFilter('upcoming');
+              
+              // Add click handlers for filter buttons
               filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
                   const filter = this.getAttribute('data-filter');
@@ -186,26 +223,8 @@ app.get("/", async (c) => {
                   filterButtons.forEach(btn => btn.classList.remove('active'));
                   this.classList.add('active');
                   
-                  // Filter events
-                  const eventCards = eventsContainer.querySelectorAll('.event-card');
-                  eventCards.forEach(card => {
-                    if (filter === 'all') {
-                      card.style.display = '';
-                    } else if (filter === 'upcoming' && card.classList.contains('past')) {
-                      card.style.display = 'none';
-                    } else if (filter === 'past' && !card.classList.contains('past')) {
-                      card.style.display = 'none';
-                    } else {
-                      card.style.display = '';
-                    }
-                  });
-                  
-                  // Hide empty month groups
-                  const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
-                  monthGroups.forEach(group => {
-                    const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
-                    group.style.display = visibleCards.length === 0 ? 'none' : '';
-                  });
+                  // Apply filter
+                  applyFilter(filter);
                 });
               });
             });
