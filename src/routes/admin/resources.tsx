@@ -41,8 +41,8 @@ export const ResourcesList: FC<ResourcesListProps> = ({ resources }) => {
                 <td>
                   <span class="badge badge-secondary">{resource.category}</span>
                 </td>
-                <td>
-                  <a href={resource.url} target="_blank" rel="noopener noreferrer" class="link">
+                <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  <a href={resource.url} target="_blank" rel="noopener noreferrer" class="link" title={resource.url}>
                     {resource.url}
                   </a>
                 </td>

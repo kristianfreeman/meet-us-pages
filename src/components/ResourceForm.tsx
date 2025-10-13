@@ -39,8 +39,7 @@ export const ResourceForm: FC<ResourceFormProps> = ({ resource, isEdit = false }
             name="description"
             rows={3}
             placeholder="Resource description"
-            value={resource?.description || ''}
-          ></textarea>
+          >{resource?.description || ''}</textarea>
         </div>
 
         <div class="form-group">

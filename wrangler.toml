@@ -8,6 +8,10 @@ assets = { directory = "./public" }
 [observability]
 enabled = true
 
+# Secrets (set via: wrangler secret put <KEY>):
+# - BETTER_AUTH_SECRET: Secret for better-auth sessions
+# - API_KEY: API key for scripting/automation access to /api/v1/* endpoints
+
 [vars]
 BETTER_AUTH_URL = "https://meet-us.pages.dev"
 
