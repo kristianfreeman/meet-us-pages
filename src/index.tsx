@@ -27,6 +27,7 @@ import { createUserByAdmin } from "./routes/api/admin-users";
 // Auth
 import { auth } from "./lib/auth/better-auth";
 import { betterAuthMiddleware } from "./lib/auth/middleware";
+import { apiKeyMiddleware } from "./lib/auth/api-key-middleware";
 
 // Database
 import { createDb } from "./db";
@@ -39,6 +40,7 @@ type Bindings = {
   DB: D1Database;
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
+  API_KEY?: string;
 };
 
 const app = new Hono<{ 
@@ -115,7 +117,16 @@ app.get("/admin/events/:id/edit", betterAuthMiddleware, editEventHandler);
 app.get("/admin/resources/new", betterAuthMiddleware, newResourceHandler);
 app.get("/admin/resources/:id/edit", betterAuthMiddleware, editResourceHandler);
 
-// Content management API (protected)
+// API Key routes for scripting/automation
+app.post("/api/v1/events", apiKeyMiddleware, createEvent);
+app.put("/api/v1/events/:id", apiKeyMiddleware, updateEvent);
+app.delete("/api/v1/events/:id", apiKeyMiddleware, deleteEvent);
+
+app.post("/api/v1/resources", apiKeyMiddleware, createResource);
+app.put("/api/v1/resources/:id", apiKeyMiddleware, updateResource);
+app.delete("/api/v1/resources/:id", apiKeyMiddleware, deleteResource);
+
+// Content management API (protected - requires user login)
 app.delete("/api/events/:id", betterAuthMiddleware, deleteEvent);
 app.post("/api/events", betterAuthMiddleware, createEvent);
 app.put("/api/events/:id", betterAuthMiddleware, updateEvent);
