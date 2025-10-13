@@ -54,18 +54,22 @@ app.on(['GET', 'POST'], '/api/sign-up/*', (c) => {
   return c.json({ error: 'Public signup is disabled. Users must be created by administrators.' }, 403);
 });
 
-// Only handle specific auth routes
-app.on(['GET', 'POST'], '/api/auth/*', (c) => {
-  return auth(c.env).handler(c.req.raw);
+// Handle all better-auth routes (better-auth uses basePath: '/api')
+app.on(['GET', 'POST'], '/api/sign-in/*', async (c) => {
+  const response = await auth(c.env).handler(c.req.raw);
+  return response;
 });
-app.post('/api/sign-in', (c) => {
-  return auth(c.env).handler(c.req.raw);
+app.on(['GET', 'POST'], '/api/sign-out', async (c) => {
+  const response = await auth(c.env).handler(c.req.raw);
+  return response;
 });
-app.post('/api/sign-out', (c) => {
-  return auth(c.env).handler(c.req.raw);
+app.on(['GET', 'POST'], '/api/session', async (c) => {
+  const response = await auth(c.env).handler(c.req.raw);
+  return response;
 });
-app.get('/api/session', (c) => {
-  return auth(c.env).handler(c.req.raw);
+app.on(['GET', 'POST'], '/api/auth/*', async (c) => {
+  const response = await auth(c.env).handler(c.req.raw);
+  return response;
 });
 
 // Authentication pages
