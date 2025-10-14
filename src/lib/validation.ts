@@ -7,6 +7,9 @@ export const createEventSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
   endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'End date must be in YYYY-MM-DD format').optional().nullable(),
   location: z.string().max(200, 'Location must be less than 200 characters').optional().nullable(),
+  region: z.enum(['EMEA', 'NAMER', 'APAC', 'LATAM', 'VIRTUAL'], {
+    errorMap: () => ({ message: 'Region must be one of: EMEA, NAMER, APAC, LATAM, VIRTUAL' })
+  }).optional().nullable(),
   url: z.string().url('Must be a valid URL').optional().nullable(),
   type: z.string().max(100, 'Type must be less than 100 characters').optional().nullable(),
   tags: z.string().max(500, 'Tags must be less than 500 characters').optional().nullable(),

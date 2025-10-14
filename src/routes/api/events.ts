@@ -1,9 +1,35 @@
 import { Context } from 'hono';
 import { createDb } from '../../db';
 import { events } from '../../db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import { createEventSchema, updateEventSchema } from '../../lib/validation';
+
+export async function getEvents(c: Context<{ Bindings: any }>) {
+  const db = createDb(c.env.DB);
+
+  try {
+    const eventRows = await db.select().from(events).orderBy(desc(events.date)).all();
+    return c.json({ success: true, events: eventRows });
+  } catch (error) {
+    return c.json({ error: 'Failed to fetch events' }, 500);
+  }
+}
+
+export async function getEvent(c: Context<{ Bindings: any }>) {
+  const id = c.req.param('id');
+  const db = createDb(c.env.DB);
+
+  try {
+    const event = await db.select().from(events).where(eq(events.id, id)).get();
+    if (!event) {
+      return c.json({ error: 'Event not found' }, 404);
+    }
+    return c.json({ success: true, event });
+  } catch (error) {
+    return c.json({ error: 'Failed to fetch event' }, 500);
+  }
+}
 
 export async function deleteEvent(c: Context<{ Bindings: any }>) {
   const id = c.req.param('id');
@@ -33,6 +59,7 @@ export async function createEvent(c: Context<{ Bindings: any }>) {
       date: validatedData.date,
       endDate: validatedData.endDate || null,
       location: validatedData.location || null,
+      region: validatedData.region || null,
       url: validatedData.url || null,
       type: validatedData.type || null,
       tags: validatedData.tags || null,
@@ -68,6 +95,7 @@ export async function updateEvent(c: Context<{ Bindings: any }>) {
       ...(validatedData.date !== undefined && { date: validatedData.date }),
       ...(validatedData.endDate !== undefined && { endDate: validatedData.endDate }),
       ...(validatedData.location !== undefined && { location: validatedData.location }),
+      ...(validatedData.region !== undefined && { region: validatedData.region }),
       ...(validatedData.url !== undefined && { url: validatedData.url }),
       ...(validatedData.type !== undefined && { type: validatedData.type }),
       ...(validatedData.tags !== undefined && { tags: validatedData.tags }),

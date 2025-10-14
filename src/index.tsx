@@ -19,8 +19,8 @@ import { adminResourcesHandler } from "./routes/admin/resources";
 import { adminUsersHandler } from "./routes/admin/users";
 import { newEventHandler, editEventHandler } from "./routes/admin/event-form";
 import { newResourceHandler, editResourceHandler } from "./routes/admin/resource-form";
-import { deleteEvent, createEvent, updateEvent } from "./routes/api/events";
-import { deleteResource, createResource, updateResource } from "./routes/api/resources";
+import { getEvents, getEvent, deleteEvent, createEvent, updateEvent } from "./routes/api/events";
+import { getResources, getResource, deleteResource, createResource, updateResource } from "./routes/api/resources";
 import { deleteUser } from "./routes/api/users";
 import { createUserByAdmin } from "./routes/api/admin-users";
 
@@ -118,10 +118,14 @@ app.get("/admin/resources/new", betterAuthMiddleware, newResourceHandler);
 app.get("/admin/resources/:id/edit", betterAuthMiddleware, editResourceHandler);
 
 // API Key routes for scripting/automation
+app.get("/api/v1/events", apiKeyMiddleware, getEvents);
+app.get("/api/v1/events/:id", apiKeyMiddleware, getEvent);
 app.post("/api/v1/events", apiKeyMiddleware, createEvent);
 app.put("/api/v1/events/:id", apiKeyMiddleware, updateEvent);
 app.delete("/api/v1/events/:id", apiKeyMiddleware, deleteEvent);
 
+app.get("/api/v1/resources", apiKeyMiddleware, getResources);
+app.get("/api/v1/resources/:id", apiKeyMiddleware, getResource);
 app.post("/api/v1/resources", apiKeyMiddleware, createResource);
 app.put("/api/v1/resources/:id", apiKeyMiddleware, updateResource);
 app.delete("/api/v1/resources/:id", apiKeyMiddleware, deleteResource);
@@ -157,7 +161,6 @@ app.get("/", async (c) => {
     // Filter featured and upcoming events
     const featuredEvents = safeEventRows.filter(event => event.featured);
     const today = new Date().toISOString().split('T')[0];
-    const inPersonEvents = safeEventRows.filter(event => !event.virtual);
     
     // Group resources by category
     const resourcesByCategory = safeResourceRows.reduce((acc, resource) => {
@@ -182,42 +185,62 @@ app.get("/", async (c) => {
             <div class="container">
               <div class="events-filter-header">
                 <h2 class="section-title">Events</h2>
-                <div class="events-filter-toggle" data-filter-toggle>
-                  <button class="filter-button" data-filter="all">All Events</button>
-                  <button class="filter-button active" data-filter="upcoming">Upcoming</button>
-                  <button class="filter-button" data-filter="past">Past</button>
+                <div class="events-filter-toggle" data-region-filter-toggle>
+                  <button class="filter-button active" data-region-filter="all">All Regions</button>
+                  <button class="filter-button" data-region-filter="EMEA">EMEA</button>
+                  <button class="filter-button" data-region-filter="NAMER">NAMER</button>
+                  <button class="filter-button" data-region-filter="APAC">APAC</button>
+                  <button class="filter-button" data-region-filter="LATAM">LATAM</button>
+                  <button class="filter-button" data-region-filter="VIRTUAL">Virtual</button>
                 </div>
               </div>
             </div>
           </div>
           
           <div data-events-container>
-            <EventList 
-              title="" 
-              events={inPersonEvents}
+            <EventList
+              title=""
+              events={safeEventRows}
             />
           </div>
           
           <script dangerouslySetInnerHTML={{ __html: `
             document.addEventListener('DOMContentLoaded', function() {
-              const filterButtons = document.querySelectorAll('[data-filter]');
+              const regionFilterButtons = document.querySelectorAll('[data-region-filter]');
               const eventsContainer = document.querySelector('[data-events-container]');
-              
-              // Function to apply filter
-              function applyFilter(filter) {
+
+              let currentRegionFilter = 'all';
+
+              // Get date one week ago
+              const oneWeekAgo = new Date();
+              oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+              const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
+
+              // Function to apply filters
+              function applyFilters() {
                 const eventCards = eventsContainer.querySelectorAll('.event-card');
                 eventCards.forEach(card => {
-                  if (filter === 'all') {
-                    card.style.display = '';
-                  } else if (filter === 'upcoming' && card.classList.contains('past')) {
-                    card.style.display = 'none';
-                  } else if (filter === 'past' && !card.classList.contains('past')) {
-                    card.style.display = 'none';
-                  } else {
-                    card.style.display = '';
+                  let show = true;
+
+                  // Get event date from the card
+                  const eventDateStr = card.getAttribute('data-date');
+
+                  // Hide events older than one week
+                  if (eventDateStr && eventDateStr < oneWeekAgoStr) {
+                    show = false;
                   }
+
+                  // Apply region filter
+                  if (currentRegionFilter !== 'all') {
+                    const cardRegion = card.getAttribute('data-region');
+                    if (cardRegion !== currentRegionFilter) {
+                      show = false;
+                    }
+                  }
+
+                  card.style.display = show ? '' : 'none';
                 });
-                
+
                 // Hide empty month groups
                 const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
                 monthGroups.forEach(group => {
@@ -225,21 +248,21 @@ app.get("/", async (c) => {
                   group.style.display = visibleCards.length === 0 ? 'none' : '';
                 });
               }
-              
-              // Apply default filter (upcoming) on page load
-              applyFilter('upcoming');
-              
-              // Add click handlers for filter buttons
-              filterButtons.forEach(button => {
+
+              // Apply default filters on page load
+              applyFilters();
+
+              // Add click handlers for region filter buttons
+              regionFilterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                  const filter = this.getAttribute('data-filter');
-                  
+                  currentRegionFilter = this.getAttribute('data-region-filter');
+
                   // Update active state
-                  filterButtons.forEach(btn => btn.classList.remove('active'));
+                  regionFilterButtons.forEach(btn => btn.classList.remove('active'));
                   this.classList.add('active');
-                  
-                  // Apply filter
-                  applyFilter(filter);
+
+                  // Apply filters
+                  applyFilters();
                 });
               });
             });

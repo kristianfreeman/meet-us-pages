@@ -30,6 +30,7 @@ export const EventsList: FC<EventsListProps> = ({ events }) => {
               <th>Title</th>
               <th>Date</th>
               <th>Location</th>
+              <th>Region</th>
               <th>Type</th>
               <th>Featured</th>
               <th>Actions</th>
@@ -41,6 +42,13 @@ export const EventsList: FC<EventsListProps> = ({ events }) => {
                 <td>{event.title}</td>
                 <td>{new Date(event.date).toLocaleDateString()}</td>
                 <td>{event.location || 'Virtual'}</td>
+                <td>
+                  {event.region ? (
+                    <span class="badge badge-primary">{event.region}</span>
+                  ) : (
+                    <span class="badge badge-secondary">-</span>
+                  )}
+                </td>
                 <td>{event.type || 'Event'}</td>
                 <td>
                   <span class={`badge ${event.featured ? 'badge-success' : 'badge-secondary'}`}>
