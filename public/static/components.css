@@ -390,19 +390,24 @@
 
 /* Event Card - Fully Clickable */
 .event-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-base);
-  padding: var(--space-6);
+  padding: var(--space-8);
   text-decoration: none;
   color: inherit;
   transition: all var(--transition-base);
   position: relative;
+  height: 320px;
+}
+
+a.event-card {
   cursor: pointer;
 }
 
-.event-card:hover {
+a.event-card:hover {
   border-color: var(--color-border-hover);
   background: var(--color-bg-overlay);
   transform: translateY(-2px);
@@ -410,7 +415,7 @@
   text-decoration: none;
 }
 
-.event-card:active {
+a.event-card:active {
   transform: translateY(0);
   box-shadow: none;
 }
@@ -424,7 +429,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-3);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .event-card-title {
@@ -433,6 +438,10 @@
   color: var(--color-text-primary);
   margin: 0;
   line-height: var(--leading-tight);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .event-card-badges {
@@ -473,7 +482,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
 }
@@ -499,14 +508,19 @@
 .event-card-description {
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
+  line-height: 1.5;
   margin: 0;
   max-width: 65ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .event-card-footer {
-  margin-top: var(--space-4);
-  padding-top: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-5);
   border-top: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -973,18 +987,33 @@
   
   /* Mobile filter styles */
   .events-filter-header {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
+  .events-filter-header .section-title {
+    width: 100%;
+  }
+
   .events-filter-toggle {
     width: 100%;
-    justify-content: center;
-    margin-top: var(--space-3);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
   }
-  
+
+  .events-filter-toggle::-webkit-scrollbar {
+    display: none;
+  }
+
   .filter-button {
-    flex: 1;
     font-size: var(--text-xs);
     padding: var(--space-2) var(--space-3);
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }

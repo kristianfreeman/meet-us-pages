@@ -8,6 +8,7 @@ interface EventFormProps {
     date: string;
     end_date: string | null;
     location: string | null;
+    region: string | null;
     url: string | null;
     type: string | null;
     tags: string | null;
@@ -44,8 +45,7 @@ export const EventForm: FC<EventFormProps> = ({ event, isEdit = false }) => {
             name="description"
             rows={4}
             placeholder="Event description"
-            value={event?.description || ''}
-          ></textarea>
+          >{event?.description || ''}</textarea>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -71,15 +71,29 @@ export const EventForm: FC<EventFormProps> = ({ event, isEdit = false }) => {
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={event?.location || ''}
-            placeholder="Event location"
-          />
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={event?.location || ''}
+              placeholder="Event location"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="region">Region</label>
+            <select id="region" name="region">
+              <option value="">Select region</option>
+              <option value="EMEA" selected={event?.region === 'EMEA'}>EMEA</option>
+              <option value="NAMER" selected={event?.region === 'NAMER'}>NAMER</option>
+              <option value="APAC" selected={event?.region === 'APAC'}>APAC</option>
+              <option value="LATAM" selected={event?.region === 'LATAM'}>LATAM</option>
+              <option value="VIRTUAL" selected={event?.region === 'VIRTUAL'}>VIRTUAL</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">
@@ -162,8 +176,9 @@ export const EventForm: FC<EventFormProps> = ({ event, isEdit = false }) => {
               title: formData.get('title'),
               description: formData.get('description') || null,
               date: formData.get('date'),
-              end_date: formData.get('end_date') || null,
+              endDate: formData.get('end_date') || null,
               location: formData.get('location') || null,
+              region: formData.get('region') || null,
               url: formData.get('url') || null,
               type: formData.get('type') || null,
               tags: formData.get('tags') || null,

@@ -15,7 +15,18 @@
       "Bash(npx wrangler d1 migrations apply:*)",
       "Bash(npx wrangler d1 execute:*)",
       "WebSearch",
-      "WebFetch(domain:www.better-auth.com)"
+      "WebFetch(domain:www.better-auth.com)",
+      "Bash(npx drizzle-kit generate:*)",
+      "Bash(chmod:*)",
+      "Bash(node scripts/set-regions.js --production)",
+      "Bash(curl:*)",
+      "Bash(awk:*)",
+      "Bash(lsof:*)",
+      "Bash(python3:*)",
+      "Read(//private/tmp/**)",
+      "Bash(cat:*)",
+      "Bash(wrangler d1 export:*)",
+      "Bash(npx wrangler d1 export:*)"
     ],
     "deny": []
   }

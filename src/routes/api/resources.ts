@@ -1,9 +1,35 @@
 import { Context } from 'hono';
 import { createDb } from '../../db';
 import { resources } from '../../db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, asc } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import { createResourceSchema, updateResourceSchema } from '../../lib/validation';
+
+export async function getResources(c: Context<{ Bindings: any }>) {
+  const db = createDb(c.env.DB);
+
+  try {
+    const resourceRows = await db.select().from(resources).orderBy(asc(resources.order), asc(resources.title)).all();
+    return c.json({ success: true, resources: resourceRows });
+  } catch (error) {
+    return c.json({ error: 'Failed to fetch resources' }, 500);
+  }
+}
+
+export async function getResource(c: Context<{ Bindings: any }>) {
+  const id = c.req.param('id');
+  const db = createDb(c.env.DB);
+
+  try {
+    const resource = await db.select().from(resources).where(eq(resources.id, id)).get();
+    if (!resource) {
+      return c.json({ error: 'Resource not found' }, 404);
+    }
+    return c.json({ success: true, resource });
+  } catch (error) {
+    return c.json({ error: 'Failed to fetch resource' }, 500);
+  }
+}
 
 export async function deleteResource(c: Context<{ Bindings: any }>) {
   const id = c.req.param('id');

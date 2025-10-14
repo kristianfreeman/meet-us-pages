@@ -23,7 +23,7 @@ export const Footer: FC = () => {
           <div class="footer-divider"></div>
           
           <p class="footer-credit">
-            Built with <a href="https://pages.cloudflare.com">Cloudflare Pages</a> and{" "}
+            Built with <a href="https://workers.cloudflare.com">Cloudflare Workers</a> and{" "}
             <a href="https://honojs.dev">Hono</a>
           </p>
           

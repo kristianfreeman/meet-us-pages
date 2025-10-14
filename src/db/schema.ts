@@ -12,6 +12,7 @@ export const events = sqliteTable('events', {
   date: text('date').notNull(), // ISO date string
   endDate: text('end_date'), // ISO date string
   location: text('location'),
+  region: text('region'), // EMEA, NAMER, APAC, LATAM, etc.
   url: text('url'),
   type: text('type'), // conference, summit, meetup, etc.
   tags: text('tags'), // JSON array of tags
