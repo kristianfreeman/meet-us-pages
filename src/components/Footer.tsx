@@ -13,11 +13,12 @@ export const Footer: FC = () => {
           />
           
           <div class="footer-links">
-            <a href="https://developers.cloudflare.com" class="footer-link">Developer Docs</a>
             <a href="https://cloudflare.com" class="footer-link">Cloudflare.com</a>
-            <a href="https://discord.cloudflare.com" class="footer-link">Discord Community</a>
-            <a href="https://github.com/cloudflare" class="footer-link">GitHub</a>
+            <a href="https://developers.cloudflare.com" class="footer-link">Developer Docs</a>
             <a href="https://blog.cloudflare.com" class="footer-link">Blog</a>
+            <a href="https://discord.cloudflare.com" class="footer-link">Discord Community</a>
+            <a href="https://community.cloudflare.com/t/about-the-cloudflare-community-mvp-champs-programs/785041" class="footer-link">Community Programs</a>
+            <a href="https://github.com/cloudflare" class="footer-link">GitHub</a>
           </div>
           
           <div class="footer-divider"></div>
