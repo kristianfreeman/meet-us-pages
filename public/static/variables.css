@@ -1,79 +1,111 @@
+/* FT Kunst Grotesk - Cloudflare's official font (local) */
+@font-face {
+  font-family: 'FT Kunst Grotesk';
+  src: url('/static/fonts/KunstGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FT Kunst Grotesk';
+  src: url('/static/fonts/KunstGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* Cloudflare Brand Colors */
-  --cf-orange: #f38020;
-  --cf-orange-light: #f6a04d;
-  --cf-orange-dark: #e66a00;
-  --cf-blue: #0051c3;
-  --cf-blue-light: #0066ff;
-  --cf-blue-dark: #003d94;
+  /* Workers.cloudflare.com exact color palette - LIGHT MODE */
   
-  /* Base Colors - Dark Theme Default */
-  --color-black: #000000;
-  --color-gray-950: #020617;
-  --color-gray-900: #0f172a;
-  --color-gray-850: #1a2332;
-  --color-gray-800: #1e293b;
-  --color-gray-700: #334155;
-  --color-gray-600: #475569;
-  --color-gray-500: #64748b;
-  --color-gray-400: #94a3b8;
-  --color-gray-300: #cbd5e1;
-  --color-gray-200: #e2e8f0;
-  --color-gray-100: #f1f5f9;
-  --color-gray-50: #f8fafc;
-  --color-white: #ffffff;
+  /* Background colors - warm cream tones */
+  --color-background-100: #fffdfb;
+  --color-background-200: #fffbf5;
+  --color-background-300: #fef7ed;
   
-  /* Semantic Colors */
-  --color-accent: #3b82f6;
-  --color-accent-light: #60a5fa;
-  --color-accent-dark: #2563eb;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-purple: #8b5cf6;
-  --color-green: #22c55e;
+  /* Text colors - dark reddish-brown */
+  --color-foreground-100: #521000;
+  --color-foreground-200: #521000b3;
+  --color-light-foreground: #fffbf5;
   
-  /* Default to light theme */
-  --color-bg-primary: var(--color-white);
-  --color-bg-secondary: var(--color-gray-50);
-  --color-bg-elevated: var(--color-white);
-  --color-bg-overlay: var(--color-gray-100);
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-600);
-  --color-text-tertiary: var(--color-gray-500);
-  --color-text-accent: var(--color-accent);
-  --color-border: var(--color-gray-200);
-  --color-border-hover: var(--color-gray-300);
+  /* Accent/brand colors - orange */
+  --color-accent-100: #ff4801;
+  --color-accent-200: #ff6d33;
   
-  /* Typography */
-  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  --font-family-mono: ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  /* Border colors - warm tan */
+  --color-border-100: #ebd5c1;
+  --color-border-100-50: #ebd5c180;
+  --color-node-border: #e9d1bb;
   
-  /* Font Sizes */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.75rem;
+  /* Accent colors - Orange */
+  --color-accent-100: #ff4801;
+  --color-accent-200: #ffe9e0;
+  --color-dark-accent: #ff4801;
+  
+  /* Selection colors */
+  --color-selection-bg: #ffe9e0;
+  --color-selection-text: #ff500a;
+  
+  /* Feature colors */
+  --color-compute: #0a95ff;
+  --color-storage: #ee0ddb;
+  --color-ai: #19e306;
+  --color-media: #9616ff;
+  
+  /* Legacy aliases for compatibility */
+  --cf-orange: var(--color-accent-100);
+  --cf-orange-light: var(--color-accent-200);
+  --cf-orange-dark: #b13200;
+  
+  /* Semantic color mappings */
+  --color-bg-primary: var(--color-background-100);
+  --color-bg-secondary: var(--color-background-200);
+  --color-bg-elevated: var(--color-background-100);
+  --color-bg-overlay: var(--color-background-300);
+  --color-text-primary: var(--color-foreground-100);
+  --color-text-secondary: var(--color-foreground-200);
+  --color-text-tertiary: #786d61;
+  --color-text-accent: var(--color-accent-100);
+  --color-border: var(--color-border-100);
+  --color-border-hover: var(--color-node-border);
+  
+  /* Typography - Workers.cloudflare.com style */
+  --font-family-base: 'FT Kunst Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+  
+  /* Font Sizes - matching workers.cloudflare.com */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px - body text size on workers */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
   
   /* Font Weights */
+  --font-light: 300;
   --font-normal: 400;
   --font-medium: 500;
   --font-semibold: 600;
   --font-bold: 700;
   
-  /* Line Heights */
+  /* Line Heights - Workers style (tighter) */
   --leading-none: 1;
-  --leading-tight: 1.25;
-  --leading-snug: 1.375;
+  --leading-tight: 1.2;
+  --leading-snug: 1.25;
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
   --leading-loose: 2;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
   
   /* Spacing */
   --space-0: 0;
@@ -157,15 +189,70 @@
   --color-border-hover: var(--color-gray-300);
 }
 
+/* Dark mode - Workers.cloudflare.com exact colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark backgrounds */
+    --color-background-100: #121212;
+    --color-background-200: #191817;
+    --color-background-300: #2a2927;
+    
+    /* Dark text colors */
+    --color-foreground-100: #f0e3de;
+    --color-foreground-200: #fffdfb90;
+    --color-light-foreground: #fffbf5;
+    
+    /* Dark accent colors */
+    --color-accent-100: #f14602;
+    --color-accent-200: #ff6d33;
+    
+    /* Dark borders - very subtle */
+    --color-border-100: #f0e3de20;
+    --color-border-100-50: #f0e3de20;
+    
+    /* Dark selection */
+    --color-selection-bg: #3d1f0f;
+    --color-selection-text: #ff7038;
+    
+    /* Semantic mappings for dark mode */
+    --color-bg-primary: var(--color-background-100);
+    --color-bg-secondary: var(--color-background-200);
+    --color-bg-elevated: var(--color-background-200);
+    --color-bg-overlay: var(--color-background-300);
+    --color-text-primary: var(--color-foreground-100);
+    --color-text-secondary: var(--color-foreground-200);
+    --color-text-tertiary: rgba(240, 227, 222, 0.5);
+    --color-text-accent: var(--color-accent-100);
+    --color-border: var(--color-border-100);
+    --color-border-hover: rgba(240, 227, 222, 0.3);
+  }
+}
+
+/* Manual dark mode class (for toggle) */
+html.dark,
 [data-theme="dark"] {
-  --color-bg-primary: var(--color-black);
-  --color-bg-secondary: var(--color-gray-950);
-  --color-bg-elevated: var(--color-gray-900);
-  --color-bg-overlay: var(--color-gray-850);
-  --color-text-primary: var(--color-gray-50);
-  --color-text-secondary: var(--color-gray-300);
-  --color-text-tertiary: var(--color-gray-400);
-  --color-text-accent: var(--color-accent-light);
-  --color-border: var(--color-gray-800);
-  --color-border-hover: var(--color-gray-700);
+  --color-background-100: #121212;
+  --color-background-200: #191817;
+  --color-background-300: #2a2927;
+  --color-foreground-100: #f0e3de;
+  --color-foreground-200: #fffdfb90;
+  --color-light-foreground: #fffbf5;
+  --color-accent-100: #f14602;
+  --color-accent-200: #ff6d33;
+  --color-border-100: #f0e3de20;
+  --color-border-100-50: #f0e3de20;
+  --color-selection-bg: #3d1f0f;
+  --color-selection-text: #ff7038;
+  
+  /* Semantic mappings for dark mode */
+  --color-bg-primary: var(--color-background-100);
+  --color-bg-secondary: var(--color-background-200);
+  --color-bg-elevated: var(--color-background-200);
+  --color-bg-overlay: var(--color-background-300);
+  --color-text-primary: var(--color-foreground-100);
+  --color-text-secondary: var(--color-foreground-200);
+  --color-text-tertiary: rgba(240, 227, 222, 0.5);
+  --color-text-accent: var(--color-accent-100);
+  --color-border: var(--color-border-100);
+  --color-border-hover: rgba(240, 227, 222, 0.3);
 }

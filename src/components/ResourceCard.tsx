@@ -48,15 +48,25 @@ export const ResourceCard: FC<ResourceCardProps> = ({ resource }) => {
   const icon = getIconForResource(resource);
   
   return (
-    <a href={resource.url} class="resource-card" target="_blank" rel="noopener noreferrer">
-      <div class="resource-card-header">
-        <span class="resource-card-icon" dangerouslySetInnerHTML={{ __html: icon }} />
-        <h4 class="resource-card-title">{resource.title}</h4>
+    <a 
+      href={resource.url} 
+      class="resource-item"
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      <div class="resource-item-icon">
+        <span dangerouslySetInnerHTML={{ __html: icon }} />
       </div>
-      {resource.description && (
-        <p class="resource-card-description">{resource.description}</p>
-      )}
-      <span class="resource-card-arrow" dangerouslySetInnerHTML={{ __html: ExternalLink }} />
+      <div class="resource-item-text">
+        <p class="resource-item-title">
+          {resource.title}
+        </p>
+        {resource.description && (
+          <p class="resource-item-description">
+            {resource.description}
+          </p>
+        )}
+      </div>
     </a>
   );
 };

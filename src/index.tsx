@@ -172,125 +172,245 @@ app.get("/", async (c) => {
     // Get featured content from JSON for now
     const hackTheSafe = eventsData.featuredContent?.hackTheSafe;
 
+    // Calculate which regions have events (within the last week or future)
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
+    
+    const relevantEvents = safeEventRows.filter(event => event.date >= oneWeekAgoStr);
+    const availableRegions = [...new Set(relevantEvents.map(event => event.region).filter(Boolean))];
+    
+    // Define all possible regions with their display names
+    const allRegions = [
+      { id: 'EMEA', label: 'EMEA' },
+      { id: 'NAMER', label: 'NAMER' },
+      { id: 'APAC', label: 'APAC' },
+      { id: 'LATAM', label: 'LATAM' },
+      { id: 'VIRTUAL', label: 'Virtual' },
+    ];
+    
+    // Filter to only regions that have events
+    const activeRegions = allRegions.filter(region => availableRegions.includes(region.id));
+
     return c.html(
       <Layout>
         <Header />
         
-        {featuredEvents.length > 0 && <Hero featuredEvents={featuredEvents} />}
-        
-        {hackTheSafe && <FeaturedContent hackTheSafe={hackTheSafe} />}
-        
-        <main id="main-content" class="flex-grow">
-          <div class="events-filter-section">
-            <div class="container">
-              <div class="events-filter-header">
-                <h2 class="section-title">Events</h2>
-                <div class="events-filter-toggle" data-region-filter-toggle>
-                  <button class="filter-button active" data-region-filter="all">All Regions</button>
-                  <button class="filter-button" data-region-filter="EMEA">EMEA</button>
-                  <button class="filter-button" data-region-filter="NAMER">NAMER</button>
-                  <button class="filter-button" data-region-filter="APAC">APAC</button>
-                  <button class="filter-button" data-region-filter="LATAM">LATAM</button>
-                  <button class="filter-button" data-region-filter="VIRTUAL">Virtual</button>
+        <div class="container main-container">
+          {featuredEvents.length > 0 && <Hero featuredEvents={featuredEvents} />}
+          
+          {/* {hackTheSafe && <FeaturedContent hackTheSafe={hackTheSafe} />} */}
+          
+          <main id="main-content" class="flex-grow">
+            {/* Hero Section - Workers pricing style */}
+            <section class="pricing-hero">
+              <div class="pricing-hero-spacer"></div>
+              <div class="pricing-hero-content">
+                <div class="pricing-hero-inner">
+                  {/* Title + Subtitle */}
+                  <div class="pricing-hero-text">
+                    <h2 class="pricing-hero-title">Meet the Cloudflare Team</h2>
+                    <h5 class="pricing-hero-subtitle">
+                      Connect with us at conferences, events, and online communities around the world
+                    </h5>
+                  </div>
+                  
+                  {/* Filter Pills - only show if there are multiple regions */}
+                  {activeRegions.length > 1 && (
+                    <div class="events-filter-toggle" data-region-filter-toggle>
+                      <div class="filter-indicator" data-filter-indicator></div>
+                      <button class="filter-button active" data-region-filter="all">All Regions</button>
+                      {activeRegions.map(region => (
+                        <button class="filter-button" data-region-filter={region.id}>{region.label}</button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+            
+            {/* Events Container - Workers pricing style */}
+            <div class="events-container-wrapper">
+              {/* Corner decorations */}
+              <div class="corner-decorations" aria-hidden="true">
+                <div class="corner-decoration corner-top-left"></div>
+                <div class="corner-decoration corner-top-right"></div>
+                <div class="corner-decoration corner-bottom-left"></div>
+                <div class="corner-decoration corner-bottom-right"></div>
+              </div>
+              
+              {/* Middle frame container (darker) - 8px padding creates gap */}
+              <div class="events-frame">
+                {/* Month cards container with 8px gap */}
+                <div class="events-content-wrapper" data-events-container>
+                  <EventList
+                    title=""
+                    events={safeEventRows}
+                  />
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div data-events-container>
-            <EventList
-              title=""
-              events={safeEventRows}
-            />
-          </div>
-          
-          <script dangerouslySetInnerHTML={{ __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              const regionFilterButtons = document.querySelectorAll('[data-region-filter]');
-              const eventsContainer = document.querySelector('[data-events-container]');
+            
+            <script dangerouslySetInnerHTML={{ __html: `
+              document.addEventListener('DOMContentLoaded', function() {
+                const regionFilterButtons = document.querySelectorAll('[data-region-filter]');
+                const eventsContainer = document.querySelector('[data-events-container]');
+                const filterIndicator = document.querySelector('[data-filter-indicator]');
 
-              let currentRegionFilter = 'all';
+                let currentRegionFilter = 'all';
 
-              // Get date one week ago
-              const oneWeekAgo = new Date();
-              oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-              const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
+                // Function to move indicator to active button
+                function moveIndicator(button) {
+                  const buttonRect = button.getBoundingClientRect();
+                  const parentRect = button.parentElement.getBoundingClientRect();
+                  const left = buttonRect.left - parentRect.left - 4;
+                  const width = buttonRect.width;
+                  
+                  filterIndicator.style.width = width + 'px';
+                  filterIndicator.style.transform = 'translateX(' + left + 'px)';
+                }
 
-              // Function to apply filters
-              function applyFilters() {
-                const eventCards = eventsContainer.querySelectorAll('.event-card');
-                eventCards.forEach(card => {
-                  let show = true;
+                // Get date one week ago
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
 
-                  // Get event date from the card
-                  const eventDateStr = card.getAttribute('data-date');
+                // Function to apply filters
+                function applyFilters() {
+                  const eventItems = eventsContainer.querySelectorAll('.event-list-item');
+                  eventItems.forEach(item => {
+                    let show = true;
 
-                  // Hide events older than one week
-                  if (eventDateStr && eventDateStr < oneWeekAgoStr) {
-                    show = false;
-                  }
+                    // Get event date from the item
+                    const eventDateStr = item.getAttribute('data-date');
 
-                  // Apply region filter
-                  if (currentRegionFilter !== 'all') {
-                    const cardRegion = card.getAttribute('data-region');
-                    if (cardRegion !== currentRegionFilter) {
+                    // Hide events older than one week
+                    if (eventDateStr && eventDateStr < oneWeekAgoStr) {
                       show = false;
                     }
+
+                    // Apply region filter
+                    if (currentRegionFilter !== 'all') {
+                      const itemRegion = item.getAttribute('data-region');
+                      if (itemRegion !== currentRegionFilter) {
+                        show = false;
+                      }
+                    }
+
+                    item.style.display = show ? '' : 'none';
+                  });
+
+                  // Hide empty month cards
+                  const monthCards = eventsContainer.querySelectorAll('.events-month-card');
+                  monthCards.forEach(card => {
+                    const visibleItems = card.querySelectorAll('.event-list-item:not([style*="display: none"])');
+                    card.style.display = visibleItems.length === 0 ? 'none' : '';
+                  });
+                }
+
+                // Initialize indicator position
+                const activeButton = document.querySelector('.filter-button.active');
+                if (activeButton) {
+                  moveIndicator(activeButton);
+                }
+
+                // Recalculate indicator position on window resize
+                window.addEventListener('resize', function() {
+                  const currentActive = document.querySelector('.filter-button.active');
+                  if (currentActive && filterIndicator) {
+                    moveIndicator(currentActive);
                   }
-
-                  card.style.display = show ? '' : 'none';
                 });
 
-                // Hide empty month groups
-                const monthGroups = eventsContainer.querySelectorAll('.events-month-group');
-                monthGroups.forEach(group => {
-                  const visibleCards = group.querySelectorAll('.event-card:not([style*="display: none"])');
-                  group.style.display = visibleCards.length === 0 ? 'none' : '';
+                // Apply default filters on page load
+                applyFilters();
+
+                // Add click handlers for region filter buttons
+                regionFilterButtons.forEach(button => {
+                  button.addEventListener('click', function() {
+                    currentRegionFilter = this.getAttribute('data-region-filter');
+
+                    // Update active state
+                    regionFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Move indicator
+                    moveIndicator(this);
+
+                    // Apply filters
+                    applyFilters();
+                  });
                 });
-              }
 
-              // Apply default filters on page load
-              applyFilters();
-
-              // Add click handlers for region filter buttons
-              regionFilterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                  currentRegionFilter = this.getAttribute('data-region-filter');
-
-                  // Update active state
-                  regionFilterButtons.forEach(btn => btn.classList.remove('active'));
-                  this.classList.add('active');
-
-                  // Apply filters
-                  applyFilters();
+                // Month card collapse/expand functionality
+                const monthToggleButtons = document.querySelectorAll('[data-month-toggle]');
+                
+                monthToggleButtons.forEach(button => {
+                  button.addEventListener('click', function() {
+                    const card = this.closest('[data-month-card]');
+                    if (!card) return;
+                    
+                    const isExpanded = card.classList.contains('expanded');
+                    
+                    if (isExpanded) {
+                      card.classList.remove('expanded');
+                      card.classList.add('collapsed');
+                      this.setAttribute('aria-expanded', 'false');
+                    } else {
+                      card.classList.remove('collapsed');
+                      card.classList.add('expanded');
+                      this.setAttribute('aria-expanded', 'true');
+                    }
+                  });
                 });
+
+                // If no current month card is expanded, expand the first visible one
+                const expandedCards = eventsContainer.querySelectorAll('.events-month-card.expanded:not([style*="display: none"])');
+                if (expandedCards.length === 0) {
+                  const visibleCards = eventsContainer.querySelectorAll('.events-month-card:not([style*="display: none"])');
+                  if (visibleCards.length > 0) {
+                    visibleCards[0].classList.remove('collapsed');
+                    visibleCards[0].classList.add('expanded');
+                    const toggle = visibleCards[0].querySelector('[data-month-toggle]');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+                  }
+                }
               });
-            });
-          `}} />
-          
-          <section class="resources-section">
-            <div class="container">
-              <h2 class="section-title">Online</h2>
+            `}} />
+            
+            {/* Resources Container - Workers pricing style */}
+            <div class="resources-container-wrapper">
+              {/* Corner decorations */}
+              <div class="corner-decorations" aria-hidden="true">
+                <div class="corner-decoration corner-top-left"></div>
+                <div class="corner-decoration corner-top-right"></div>
+                <div class="corner-decoration corner-bottom-left"></div>
+                <div class="corner-decoration corner-bottom-right"></div>
+              </div>
               
-              <ResourceList
-                title="Community"
-                resources={resourcesByCategory.community || []}
-              />
-              
-              <h2 class="section-title mt-12">Resources</h2>
-              
-              <ResourceList
-                title="Getting Started"
-                resources={resourcesByCategory.gettingStarted || []}
-              />
-              
-              <ResourceList
-                title="Developer Tools"
-                resources={resourcesByCategory.developerTools || []}
-              />
+              {/* Middle frame container (darker) - 8px padding creates gap */}
+              <div class="resources-frame">
+                {/* Category cards container with 8px gap */}
+                <div class="resources-content-wrapper">
+                  <ResourceList
+                    title="Community"
+                    resources={resourcesByCategory.community || []}
+                  />
+                  
+                  <ResourceList
+                    title="Getting Started"
+                    resources={resourcesByCategory.gettingStarted || []}
+                  />
+                  
+                  <ResourceList
+                    title="Developer Tools"
+                    resources={resourcesByCategory.developerTools || []}
+                  />
+                </div>
+              </div>
             </div>
-          </section>
-        </main>
+          </main>
+        </div>
         
         <Footer />
       </Layout>
