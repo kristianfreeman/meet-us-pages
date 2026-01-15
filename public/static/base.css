@@ -19,50 +19,130 @@ html {
 body {
   font-family: var(--font-family-base);
   font-size: var(--text-base);
+  font-weight: var(--font-normal);
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
   min-height: 100vh;
   transition: background-color var(--transition-base), color var(--transition-base);
+  position: relative;
 }
 
-/* Typography */
+/* Background Grid Pattern - Workers style */
+.background-lines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  transition: opacity 2000ms ease-out;
+  transition-delay: 100ms;
+}
+
+@media (min-width: 768px) {
+  .background-lines {
+    display: block;
+  }
+}
+
+/* Center lines (1200px wide) */
+.background-lines-center {
+  background: var(--color-background-100);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  height: 100%;
+  width: 1200px;
+  transform: translateX(-50%);
+}
+
+/* Dashed vertical lines */
+.background-line-left,
+.background-line-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-image: linear-gradient(to bottom, var(--color-border-100-50) 50%, transparent 50%);
+  background-size: 1px 32px;
+  background-repeat: repeat-y;
+}
+
+.background-lines-center .background-line-left {
+  left: 0;
+}
+
+.background-lines-center .background-line-right {
+  right: 0;
+}
+
+/* Outer container with dots (1480px wide) */
+.background-lines-outer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 1480px;
+  transform: translateX(-50%);
+}
+
+.background-dots {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.background-lines-outer .background-line-left {
+  left: 0;
+}
+
+.background-lines-outer .background-line-right {
+  right: 0;
+}
+
+/* Typography - Workers.cloudflare.com style */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-semibold);
+  font-weight: var(--font-normal);
   line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-snug);
   margin-bottom: var(--space-4);
   color: var(--color-text-primary);
 }
 
 h1 {
-  font-size: var(--text-4xl);
-  font-weight: var(--font-bold);
-}
-
-h2 {
   font-size: var(--text-3xl);
 }
 
-h3 {
+h2 {
   font-size: var(--text-2xl);
 }
 
-h4 {
+h3 {
   font-size: var(--text-xl);
 }
 
-h5 {
+h4 {
   font-size: var(--text-lg);
 }
 
-h6 {
+h5 {
   font-size: var(--text-base);
+}
+
+h6 {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-normal);
 }
 
 p {
   margin-bottom: var(--space-4);
-  line-height: var(--leading-relaxed);
-  max-width: 65ch;
+  line-height: var(--leading-normal);
+  font-weight: var(--font-normal);
 }
 
 a {
@@ -205,8 +285,8 @@ th {
 
 /* Responsive Typography */
 @media (max-width: 768px) {
-  html {
-    font-size: 16px; /* Better mobile readability */
+  body {
+    font-size: var(--text-base);
   }
   
   h1 {
@@ -219,9 +299,5 @@ th {
   
   h3 {
     font-size: var(--text-lg);
-  }
-  
-  p {
-    line-height: 1.6;
   }
 }
