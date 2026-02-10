@@ -2,6 +2,7 @@ name = "meet-us"
 compatibility_date = "2025-08-04"
 compatibility_flags = ["nodejs_compat"]
 main = "dist/_worker.js"
+account_id = "95e065d2e3f97a1e50bae58aea71df6d"
 
 assets = { directory = "./public" }
 
