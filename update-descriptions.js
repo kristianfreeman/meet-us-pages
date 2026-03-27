@@ -1,5 +1,14 @@
-const API_KEY = 'REDACTED_LEAKED_API_KEY';
-const API_URL = 'https://meet-us.developers.workers.dev/api/v1/events';
+import { loadEnvFiles } from './scripts/load-env.js';
+
+loadEnvFiles();
+
+const API_KEY = process.env.MEET_US_API_KEY || process.env.API_KEY;
+const API_URL = process.env.MEET_US_EVENTS_API_URL || 'https://meet-us.developers.workers.dev/api/v1/events';
+
+if (!API_KEY) {
+  console.error('Missing API key. Set MEET_US_API_KEY (or API_KEY) before running this script.');
+  process.exit(1);
+}
 
 // Better descriptions mapped by event title patterns
 const descriptions = {

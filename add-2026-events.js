@@ -1,3 +1,7 @@
+import { loadEnvFiles } from './scripts/load-env.js';
+
+loadEnvFiles();
+
 // Q1 and Q2 2026 Events
 const events = [
   {
@@ -305,8 +309,13 @@ const events = [
 
 console.log(`Adding ${events.length} events to production...`);
 
-const API_KEY = 'REDACTED_LEAKED_API_KEY';
-const API_URL = 'https://meet-us.developers.workers.dev/api/v1/events';
+const API_KEY = process.env.MEET_US_API_KEY || process.env.API_KEY;
+const API_URL = process.env.MEET_US_EVENTS_API_URL || 'https://meet-us.developers.workers.dev/api/v1/events';
+
+if (!API_KEY) {
+  console.error('Missing API key. Set MEET_US_API_KEY (or API_KEY) before running this script.');
+  process.exit(1);
+}
 
 async function addEvent(event) {
   const response = await fetch(API_URL, {

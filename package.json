@@ -13,7 +13,8 @@
     "auth:generate": "npx better-auth generate --output src/lib/auth/schema.ts -y",
     "db:seed": "wrangler d1 execute meet-us-db --local --file=./scripts/seed.sql",
     "create-user": "node scripts/create-user.js",
-    "create-admin": "node scripts/create-admin-direct.js"
+    "create-admin": "node scripts/create-admin-direct.js",
+    "events:cli": "node scripts/events-cli.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
