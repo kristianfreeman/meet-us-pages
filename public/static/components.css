@@ -540,6 +540,11 @@ h5.pricing-hero-subtitle {
   white-space: nowrap;
 }
 
+[data-theme="light"] .featured-cta,
+:root:not([data-theme]) .featured-cta {
+  color: var(--color-white);
+}
+
 @media (max-width: 768px) {
   .featured-card-content {
     flex-direction: column;
@@ -627,7 +632,7 @@ h5.pricing-hero-subtitle {
   align-items: center;
   gap: var(--space-2);
   background: var(--cf-orange);
-  color: var(--color-white);
+  color: #ffffff;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-full);
   font-weight: var(--font-semibold);
@@ -637,6 +642,12 @@ h5.pricing-hero-subtitle {
   box-shadow: var(--shadow-dark-base);
 }
 
+.hero-cta:visited,
+.hero-cta:focus,
+.hero-cta:focus-visible {
+  color: #ffffff;
+}
+
 .hero-cta svg {
   width: 20px;
   height: 20px;
@@ -644,12 +655,14 @@ h5.pricing-hero-subtitle {
 
 .hero-cta:hover {
   background: var(--cf-orange-dark);
+  color: #ffffff;
   transform: translateY(-1px);
   box-shadow: var(--shadow-dark-md);
   text-decoration: none;
 }
 
 .hero-cta:active {
+  color: #ffffff;
   transform: translateY(0);
   box-shadow: var(--shadow-dark-base);
 }

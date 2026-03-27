@@ -27,6 +27,8 @@
   --color-foreground-100: #521000;
   --color-foreground-200: #521000b3;
   --color-light-foreground: #fffbf5;
+  --color-white: #ffffff;
+  --color-black: #000000;
   
   /* Accent/brand colors - orange */
   --color-accent-100: #ff4801;
