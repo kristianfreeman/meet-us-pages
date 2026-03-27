@@ -13,6 +13,7 @@ export const createEventSchema = z.object({
   url: z.string().url('Must be a valid URL').optional().nullable(),
   type: z.string().max(100, 'Type must be less than 100 characters').optional().nullable(),
   tags: z.string().max(500, 'Tags must be less than 500 characters').optional().nullable(),
+  status: z.enum(['draft', 'published']).optional().default('draft'),
   featured: z.boolean().optional().default(false),
   virtual: z.boolean().optional().default(false),
 });

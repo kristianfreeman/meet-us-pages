@@ -32,6 +32,7 @@ export const EventsList: FC<EventsListProps> = ({ events }) => {
               <th>Location</th>
               <th>Region</th>
               <th>Type</th>
+              <th>Status</th>
               <th>Featured</th>
               <th>Actions</th>
             </tr>
@@ -51,7 +52,12 @@ export const EventsList: FC<EventsListProps> = ({ events }) => {
                 </td>
                 <td>{event.type || 'Event'}</td>
                 <td>
-                  <span class={`badge ${event.featured ? 'badge-success' : 'badge-secondary'}`}>
+                  <span class={`badge ${event.status === 'published' ? 'badge-success' : 'badge-secondary'}`}>
+                    {event.status === 'published' ? 'Published' : 'Draft'}
+                  </span>
+                </td>
+                <td>
+                  <span class={`badge ${event.featured ? 'badge-featured' : 'badge-secondary'}`}>
                     {event.featured ? 'Yes' : 'No'}
                   </span>
                 </td>

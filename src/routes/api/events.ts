@@ -63,6 +63,7 @@ export async function createEvent(c: Context<{ Bindings: any }>) {
       url: validatedData.url || null,
       type: validatedData.type || null,
       tags: validatedData.tags || null,
+      status: validatedData.status || 'draft',
       featured: validatedData.featured || false,
       virtual: validatedData.virtual || false,
       createdAt: new Date().toISOString(),
@@ -99,6 +100,7 @@ export async function updateEvent(c: Context<{ Bindings: any }>) {
       ...(validatedData.url !== undefined && { url: validatedData.url }),
       ...(validatedData.type !== undefined && { type: validatedData.type }),
       ...(validatedData.tags !== undefined && { tags: validatedData.tags }),
+      ...(validatedData.status !== undefined && { status: validatedData.status }),
       ...(validatedData.featured !== undefined && { featured: validatedData.featured }),
       ...(validatedData.virtual !== undefined && { virtual: validatedData.virtual }),
       updatedAt: new Date().toISOString()

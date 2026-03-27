@@ -8,6 +8,7 @@ export interface Event {
   url: string;
   type: 'conference' | 'summit' | 'meetup' | 'webinar' | 'hackathon';
   tags?: string[];
+  status?: 'draft' | 'published';
   featured?: boolean;
   virtual?: boolean;
 }

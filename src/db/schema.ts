@@ -16,6 +16,7 @@ export const events = sqliteTable('events', {
   url: text('url'),
   type: text('type'), // conference, summit, meetup, etc.
   tags: text('tags'), // JSON array of tags
+  status: text('status').notNull().default('published'), // draft or published
   featured: integer('featured', { mode: 'boolean' }).default(false),
   virtual: integer('virtual', { mode: 'boolean' }).default(false),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),

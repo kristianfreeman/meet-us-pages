@@ -451,6 +451,16 @@
   color: #4caf50;
 }
 
+.badge-featured {
+  background: #f48120;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .badge-featured {
+  background: #f48120;
+  color: #ffffff;
+}
+
 .badge-warning {
   background: #fff3e0;
   color: #e65100;

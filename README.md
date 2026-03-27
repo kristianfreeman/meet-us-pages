@@ -53,3 +53,31 @@ export MEET_US_API_BASE="http://127.0.0.1:8788/api/v1"
 ```
 
 Never hardcode API keys in repo files.
+
+## Google Sheets sync (Apps Script)
+
+Use `scripts/google-sheets-sync.gs` in your spreadsheet-bound Apps Script project.
+
+1. Open the events spreadsheet -> Extensions -> Apps Script.
+2. Paste in `scripts/google-sheets-sync.gs`.
+3. Set Script Properties:
+
+```txt
+MEET_US_API_KEY=<your API key>
+MEET_US_API_BASE=https://meet-us.developers.workers.dev/api/v1
+MEET_US_SHEET_NAME=<optional tab name>
+MEET_US_DRY_RUN=true
+```
+
+4. Run `syncMeetUsEvents()` once to authorize.
+5. Turn off dry run (`MEET_US_DRY_RUN=false`) and run again.
+
+The script upserts by `Event Name + Start Date + Region`, normalizes dates to `YYYY-MM-DD`, maps `APJC -> APAC`, and sends payloads to `/api/v1/events`.
+
+Safety defaults:
+
+- New creates are only attempted when the sheet `Status` column is `Confirmed`.
+- Synced creates are sent as `status=draft` so they are not shown publicly until published.
+- Duplicate rows with the same sync key in a single sheet run are logged as `[REVIEW]` and skipped.
+- Rows with `Classification=Internal` are skipped.
+- On updates, blank/invalid `Reg Page` values do not overwrite an existing event URL.

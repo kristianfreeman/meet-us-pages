@@ -155,7 +155,7 @@ app.get("/", async (c) => {
     const resourceRows = await db.select().from(resources).orderBy(resources.order, resources.title).all();
     
     // Ensure we have arrays
-    const safeEventRows = Array.isArray(eventRows) ? eventRows : [];
+    const safeEventRows = Array.isArray(eventRows) ? eventRows.filter((event) => event.status === 'published') : [];
     const safeResourceRows = Array.isArray(resourceRows) ? resourceRows : [];
     
     // Filter featured and upcoming events

@@ -12,6 +12,7 @@ interface EventFormProps {
     url: string | null;
     type: string | null;
     tags: string | null;
+    status: 'draft' | 'published';
     featured: boolean;
     virtual: boolean;
   };
@@ -121,6 +122,14 @@ export const EventForm: FC<EventFormProps> = ({ event, isEdit = false }) => {
           </div>
 
           <div class="form-group">
+            <label for="status">Publish Status</label>
+            <select id="status" name="status">
+              <option value="draft" selected={!event || event.status === 'draft'}>Draft</option>
+              <option value="published" selected={event?.status === 'published'}>Published</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="tags">Tags</label>
             <input
               type="text"
@@ -181,6 +190,7 @@ export const EventForm: FC<EventFormProps> = ({ event, isEdit = false }) => {
               region: formData.get('region') || null,
               url: formData.get('url') || null,
               type: formData.get('type') || null,
+              status: formData.get('status') || 'draft',
               tags: formData.get('tags') || null,
               featured: formData.has('featured'),
               virtual: formData.has('virtual')
