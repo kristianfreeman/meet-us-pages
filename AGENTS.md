@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to coding agents when working with code in this repository.
 
 ## Project Overview
 
@@ -55,21 +55,25 @@ The application follows a modular server-side rendering pattern:
 5. **`src/types/`** - TypeScript type definitions for the application
 
 6. **`public/static/`** - Static assets served directly by Cloudflare Pages:
-   - Modular CSS files (base.css, components.css, utilities.css, variables.css)
+   - Modular CSS files (`base.css`, `components.css`, `utilities.css`, `variables.css`)
    - `theme.js` - Client-side theme switching functionality
    - `images/` - Cloudflare logos and SVG assets
 
 ## Key Development Notes
 
 ### JSX Usage
+
 This project uses Hono's JSX runtime, not React. JSX is configured in `tsconfig.json`:
+
 ```json
 "jsx": "react-jsx",
 "jsxImportSource": "hono/jsx"
 ```
 
 ### Workers Assets Configuration
-The project uses Cloudflare Workers Assets (requires compatibility_date "2025-01-01"):
+
+The project uses Cloudflare Workers Assets (requires `compatibility_date = "2025-01-01"`):
+
 ```toml
 name = "meet-us-pages"
 compatibility_date = "2025-01-01"
@@ -77,18 +81,22 @@ main = "dist/_worker.js"
 assets = { directory = "./public" }
 ```
 
-### Static Assets & Routing
+### Static Assets and Routing
+
 - Static files in `public/static/` are served at `/static/*` paths
 - `_routes.json` configures which paths are handled by the Worker vs served as static assets
 - Images and CSS files bypass the Worker for optimal performance
 
 ### TypeScript Configuration
+
 - Strict mode is enabled
 - Target is ESNext
 - Module resolution is set to Bundler for Vite compatibility
 
 ### CSS Architecture
+
 The application uses a modular CSS approach:
+
 - `base.css` - Reset and foundational styles
 - `components.css` - Component-specific styles
 - `utilities.css` - Utility classes
@@ -96,7 +104,9 @@ The application uses a modular CSS approach:
 - `index.css` - Main import file that combines all CSS modules
 
 ### Adding New Routes
+
 To add new routes, modify `src/index.tsx`:
+
 ```typescript
 app.get('/new-route', (c) => {
   return c.render(
@@ -108,7 +118,9 @@ app.get('/new-route', (c) => {
 ```
 
 ### Component Development
+
 When creating new components:
+
 1. Use Hono's JSX types: `import { FC } from "hono/jsx"`
 2. Follow existing component patterns in `src/components/`
 3. Keep components server-side only unless client interaction is needed
@@ -116,22 +128,23 @@ When creating new components:
 ## Deployment
 
 The project is configured for Cloudflare Pages deployment:
-- `wrangler.toml` contains the deployment configuration with Workers Assets enabled
+
+- `wrangler.toml` contains deployment configuration with Workers Assets enabled
 - Build output goes to the `dist` directory as `_worker.js`
 - Static assets are served from the `public` directory
 - Deployment happens via `npm run deploy` which builds and deploys in one step
 
 ## No Test Framework
 
-Currently, there is no test framework configured. If tests need to be added, consider setting up Vitest which works well with Vite.
+There is currently no test framework configured. If tests need to be added, consider setting up Vitest, which works well with Vite.
 
 ## Environment Variables
 
-No environment variables are currently in use. If needed in the future, use Cloudflare's `wrangler secret` command or `.dev.vars` file for local development.
+No environment variables are currently required for the app runtime itself. For local scripts/CLI, use `.env.local` (gitignored) and keep secrets out of source control.
 
 ## Development Workflow
 
-1. The `renderer.tsx` is deprecated in favor of the `Layout` component
+1. `renderer.tsx` is deprecated in favor of the `Layout` component
 2. All new pages should use the Layout component for consistent structure
-3. Event data should be managed through the eventService
-4. Client-side JavaScript should be minimal and only for UI interactions (like filtering)
+3. Event data should be managed through `eventService`
+4. Client-side JavaScript should be minimal and used only for UI interactions
